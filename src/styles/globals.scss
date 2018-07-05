@@ -1,0 +1,11 @@
+@import './variables';
+
+a {
+  font-weight: 300;
+  text-decoration: none;
+  color: map-get($colors, primary);
+
+  &:hover {
+    color: map-get($colors, primary-hover);
+  }
+}
