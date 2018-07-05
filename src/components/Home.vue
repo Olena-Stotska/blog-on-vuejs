@@ -22,6 +22,7 @@ import FormRegistration from './FormRegistration'
 
   export default {
     name: 'Home',
+
     components: {
       FormRegistration,
     },
