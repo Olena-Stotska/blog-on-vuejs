@@ -4,6 +4,7 @@
       <span>similar of <a href="https://medium.com/">Midium</a></span>
       <h1 class="name">Blog</h1>
         <FormRegistration />
+        <UserProfile v-if="isLogged" />
     </div>
 
     <div class="tags controls">
@@ -19,13 +20,21 @@
 
 <script>
 import FormRegistration from './FormRegistration'
+import UserProfile from './UserProfile'
+
+import { mapState } from 'vuex'
 
   export default {
     name: 'Home',
 
     components: {
       FormRegistration,
+      UserProfile
     },
+
+    computed: {
+      ...mapState(['isLogged'])
+    }
   }
 </script>
 

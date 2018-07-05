@@ -8,12 +8,19 @@ export default new Vuex.Store({
   state: {
     posts: [],
     users: [],
+    currentUser: '',
     isLogged: false
   },
 
   plugins: [
-    storage(['posts', 'users', 'isLogged']),
+    storage(['posts', 'users', 'isLogged', 'currentUser']),
   ],
+
+  getters: {
+    currentUser(state) {
+      return state.users.find(user => user.email === state.currentUser)
+    }
+  },
 
   mutations: {
     addUser(state, user) {
@@ -22,6 +29,8 @@ export default new Vuex.Store({
 
     loginUser(state, { email, password }) {
       state.isLogged = state.users.some(user => user.email === email && user.password === password)
+
+      state.currentUser = email
     },
   },
 

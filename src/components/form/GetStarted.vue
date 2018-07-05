@@ -49,7 +49,6 @@ import { mapActions } from 'vuex'
 
 export default {
   name: 'GetStarted',
-
   data: () => ({
     name: '',
     phone: '',
@@ -62,7 +61,6 @@ export default {
     isValidPassword: true,
     isValidPasswordConf: true
   }),
-
   methods: {
     ...mapActions(['addUser', 'loginUser']),
 
@@ -85,7 +83,7 @@ export default {
         this.name = this.phone = this.email = this.password = this.passwordConf = ''
         this.$emit('registered')
       })
-    }
+    },
   }
 }
 </script>
