@@ -1,0 +1,83 @@
+@import "./variables.scss";
+
+$bg-contact: map-get($colors, dark) !default;
+
+.errors-block {
+    color: #f12b2b;
+  }
+
+.btn-sent {
+  color: #03a87c;
+  line-height: 2rem;
+  padding: 0 15px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  float: right;
+  background-color: #fff;
+  opacity: 0.6;
+  border: 1px solid map-get($colors, secondary);
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s;
+
+  &:active {
+    box-shadow: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+form {
+  padding: 0 10px;
+}
+
+.form-group {
+  display: block;
+  margin-bottom: 15px;
+
+  .star-required {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: map-get($colors, secondary);
+  }
+
+  .title-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .validation {
+    color: map-get($colors, error);
+    animation-duration: 0.5s;
+  }
+
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    border: 1px solid #fff;
+    line-height: 2rem;
+    text-indent: 1rem;
+    font-size: 1.2rem;
+    outline: none;
+    background-color: #fff;
+    opacity: 0.6;
+  }
+}
+
+.fadeRight-enter,
+.fadeRight-enter-to {
+  animation: fadeInRight 0.6s;
+}
+
+.fadeRight-move {
+  transition: transform 1s;
+}
+
+.fadeRight-leave,
+.fadeRight-leave-to {
+  animation: fadeOutRight 0.6s;
+}

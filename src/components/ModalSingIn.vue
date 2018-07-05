@@ -19,5 +19,6 @@
 </script>
 
 <style scoped lang="scss">
+@import '@/styles/modal-style.scss';
 
 </style>

@@ -5,9 +5,10 @@
       <a @click.prevent="isModalGetStarted = true" class="get-started" href="#">Get Started</a>
     </div>
 
-    <ModalSingIn v-if="isModalSingIn">
+    <ModalSingIn v-if="isModalSingIn" @close="isModalSingIn = false">
       <SingIn />
     </ModalSingIn>
+
     <ModalGetStarted v-if="isModalGetStarted" @close="isModalGetStarted = false">
       <GetStarted />
     </ModalGetStarted>
@@ -56,6 +57,10 @@ export default {
 
   .sing-in {
     border: none;
+
+    &:hover {
+      border: none;
+    }
   }
 }
 </style>
