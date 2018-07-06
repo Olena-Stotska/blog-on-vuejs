@@ -16,7 +16,7 @@
       <input type="password" v-model.trim="password" v-validity="isValidPassword" minlength="6" required/>
     </label>
 
-    <div>{{ errorMessage }}</div>
+    <transition name="fadeUp"><div v-show="errorMessage" class="error-msg">{{ errorMessage }}</div></transition>
 
     <button class="btn-sent">Send</button>
   </form>
@@ -46,9 +46,7 @@ export default {
       }).then(() => {
         this.email = this.password = ''
         this.$emit('login')
-      }).catch((error) => {
-        this.errorMessage = error.message
-      })
+      }).catch((error) => this.errorMessage = error.message)
     }
   }
 }

@@ -3,6 +3,7 @@
     <div class="modal-mask">
       <div @click.self="$emit('close')" class="modal-wrapper">
         <div class="modal-container">
+          <button class="btn-close" @click="$emit('close')"></button>
           <div class="modal-body">
             <slot></slot>
           </div>

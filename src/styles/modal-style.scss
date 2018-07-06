@@ -29,6 +29,7 @@
   width: 90%;
   margin: 0px auto;
   padding: 10px;
+  position: relative;
   transition: all .3s ease;
   background-color: map-get($colors, bg-form);
   font-family: Helvetica, Arial, sans-serif;
@@ -50,4 +51,37 @@
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.btn-close {
+  position: absolute;
+  right: 20px;
+  top: 13px;
+  width: 20px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  &:before, &:after {
+    position: absolute;
+    left: 9px;
+    content: ' ';
+    height: 20px;
+    width: 2px;
+    background-color: map-get($colors, primary);
+    top: -3px;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
 }

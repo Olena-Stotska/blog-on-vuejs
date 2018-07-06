@@ -17,8 +17,12 @@ export default new Vuex.Store({
   ],
 
   getters: {
-    currentUser(state) {
-      return state.users.find(user => user.email === state.currentUser)
+    currentUser(state, getters) {
+      return getters.findUser(state.currentUser)
+    },
+
+    findUser(state) {
+      return (email) => state.users.find(user => user.email === email)
     }
   },
 
@@ -35,14 +39,18 @@ export default new Vuex.Store({
   },
 
   actions: {
-    addUser({ commit }, user) {
+    addUser({ commit, getters }, user) {
+      if (getters.findUser(user.email)) {
+        return Promise.reject(new Error('Oops! User with such email already exists'))
+      }
+
       commit('addUser', user)
     },
 
     loginUser({ commit, state }, user) {
       commit('loginUser', user)
 
-      return state.isLogged ? Promise.resolve() : Promise.reject(new Error('Email or password is not correct!'))
+      return state.isLogged ? Promise.resolve() : Promise.reject(new Error('Oops! These credentials are not valid.'))
     },
   }
 })

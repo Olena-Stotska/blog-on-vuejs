@@ -40,6 +40,8 @@
       <input type="password" v-model.trim="passwordConf" v-validity="isValidPasswordConf" @input="validatePasswordEquality"/>
     </label>
 
+    <transition name="fadeUp"><div v-show="errorMessage" class="error-msg">{{ errorMessage }}</div></transition>
+
     <button class="btn-sent">Send</button>
   </form>
 </template>
@@ -55,6 +57,7 @@ export default {
     email: '',
     password: '',
     passwordConf: '',
+    errorMessage: '',
     isValidName: true,
     isValidEmail: true,
     isValidPhone: true,
@@ -82,7 +85,7 @@ export default {
       }).then(() => {
         this.name = this.phone = this.email = this.password = this.passwordConf = ''
         this.$emit('registered')
-      })
+      }).catch((error) => this.errorMessage = error.message)
     },
   }
 }
