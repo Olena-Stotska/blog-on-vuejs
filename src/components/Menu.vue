@@ -56,7 +56,7 @@
   visibility: visible;
   width: 100%;
   background-color: #fff;
-  box-shadow: 0 0 1px map-get($colors, primary);
+  box-shadow: 0 0 1px rgba(100, 100, 100, 0.54);
 
   &:before {
     position: absolute;
@@ -67,7 +67,7 @@
     border-style: solid;
     border-width: 0 10px 10px 10px;
     border-color: transparent transparent #fff transparent;
-    -webkit-filter: drop-shadow(0 -1px 0 map-get($colors, primary));
+    -webkit-filter: drop-shadow(0 -1px 0 rgba(100, 100, 100, 0.54));
   }
 }
 
@@ -80,6 +80,7 @@
   li {
     margin-bottom: 40px;
     margin-top: 50px;
+    cursor: pointer;
 
     &.line {
       margin-bottom: 30px;
@@ -89,15 +90,35 @@
   }
 
   a {
-    font-weight: 700;
+    font-weight: 500;
     padding-left: 40px;
   }
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
   .popover {
-    width: 300px;
-    right: 4px;
+    width: 250px;
+    right: 25px;
+
+    &:before {
+      right: 13px;
+    }
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, medium)}) {
+  .popover {
+    &:before {
+      right: 15px;
+    }
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, large)}) {
+  .popover {
+    &:before {
+      right: 19px;
+    }
   }
 }
 </style>
