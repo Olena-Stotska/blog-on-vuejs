@@ -6,42 +6,50 @@
         <li class="line"><a href="#">Stories</a></li>
         <li><a href="#">Profile</a></li>
         <li class="line"><a href="#">Settings</a></li>
-        <li><a href="#">Sign Out</a></li>
+        <li><a href="#" @click="signOut">Sign Out</a></li>
       </ul>
     </div>
   </transition>
 </template>
 
 <script>
-  export default {
-    name: 'Menu',
-    props: ['open'],
-    data: () => ({
-      isOpen: false
-    }),
-    watch: {
-      open: {
-        immediate: true,
+import { mapActions } from 'vuex'
 
-        handler(value) {
-          this.isOpen = value
-        }
+export default {
+  name: 'Menu',
+  props: ['open'],
+  data: () => ({
+    isOpen: false
+  }),
+  watch: {
+    open: {
+      immediate: true,
+
+      handler(value) {
+        this.isOpen = value
       }
-    },
-    methods: {
-      close() {
-        this.isOpen = false
-      }
-    },
-
-    mounted() {
-      document.addEventListener('click', this.close)
-    },
-
-    destroyed() {
-      document.removeEventListener('click', this.close)
     }
+  },
+  methods: {
+    ...mapActions(['logout']),
+
+    signOut() {
+      this.logout()
+    },
+
+    close() {
+      this.isOpen = false
+    }
+  },
+
+  mounted() {
+    document.addEventListener('click', this.close)
+  },
+
+  destroyed() {
+    document.removeEventListener('click', this.close)
   }
+}
 </script>
 
 <style scoped lang="scss">

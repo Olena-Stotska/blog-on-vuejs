@@ -40,6 +40,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   font-size: 1.2rem;
   font-weight: 500;
   border-radius: 50%;

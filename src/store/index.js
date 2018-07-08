@@ -36,6 +36,11 @@ export default new Vuex.Store({
 
       state.currentUser = email
     },
+
+    logout(state) {
+      state.isLogged = false
+      state.currentUser = ''
+    }
   },
 
   actions: {
@@ -52,5 +57,9 @@ export default new Vuex.Store({
 
       return state.isLogged ? Promise.resolve() : Promise.reject(new Error('Oops! These credentials are not valid.'))
     },
+
+    logout({ commit }) {
+      commit('logout')
+    }
   }
 })
