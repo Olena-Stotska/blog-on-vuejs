@@ -1,4 +1,26 @@
-@import './variables.scss';
+<template>
+  <transition name="modal">
+    <div class="modal-mask">
+      <div @click.self="$emit('close')" class="modal-wrapper">
+        <div class="modal-container">
+          <button class="btn-close" @click="$emit('close')"></button>
+          <div class="modal-body">
+            <slot></slot>
+          </div>
+        </div>
+      </div>
+    </div>
+  </transition>
+</template>
+
+<script>
+  export default {
+    name: 'Modal'
+  }
+</script>
+
+<style scoped lang="scss">
+@import '../styles/variables.scss';
 
 .modal-mask {
   position: fixed;
@@ -9,7 +31,7 @@
   bottom: 0;
   width: 100%;
   min-height: 100%;
-  background-color: rgba(0, 0, 0, .5);
+  background-color: rgba(255, 255, 255, .85);
   transition: opacity .3s ease;
 }
 
@@ -34,19 +56,6 @@
   text-align: center;
   transition: all .3s ease;
   background-color: map-get($colors, bg-form);
-
-  h1 {
-    font-size: 1.4rem;
-    font-weight: 700;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-    font-weight: 400;
-    margin-bottom: 0;
-    width: 85%;
-    margin: 0 auto;
-  }
 }
 
 .modal-default-button {
@@ -130,3 +139,4 @@
     width: 40%;
   }
 }
+</style>

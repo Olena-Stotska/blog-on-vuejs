@@ -5,19 +5,18 @@
       <a @click.prevent="isModalGetStarted = true" class="get-started" href="#">Get Started</a>
     </div>
 
-    <ModalSingIn v-if="isModalSingIn" @close="isModalSingIn = false" >
+    <Modal v-if="isModalSingIn" @close="isModalSingIn = false" >
       <SingIn @login="isModalSingIn = false" />
-    </ModalSingIn>
+    </Modal>
 
-    <ModalGetStarted v-if="isModalGetStarted" @close="isModalGetStarted = false" >
+    <Modal v-if="isModalGetStarted" @close="isModalGetStarted = false" >
       <GetStarted  @registered="isModalGetStarted = false" />
-    </ModalGetStarted>
+    </Modal>
   </div>
 </template>
 
 <script>
-import ModalSingIn from './ModalSingIn'
-import ModalGetStarted from './ModalGetStarted'
+import Modal from './Modal'
 import SingIn from './form/SingIn'
 import GetStarted from './form/GetStarted'
 
@@ -26,8 +25,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'FormRegistration',
   components: {
-    ModalSingIn,
-    ModalGetStarted,
+    Modal,
     SingIn,
     GetStarted
   },

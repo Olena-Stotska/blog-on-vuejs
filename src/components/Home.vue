@@ -3,8 +3,8 @@
     <div class="metabar">
       <span>similar of <a href="https://medium.com/">Midium</a></span>
       <h1 class="name">Blog</h1>
-        <FormRegistration />
-        <UserProfile v-if="isLogged" />
+      <FormRegistration />
+      <UserProfile v-if="isLogged" />
     </div>
 
     <div class="tags controls">
@@ -29,7 +29,7 @@ import { mapState } from 'vuex'
 
     components: {
       FormRegistration,
-      UserProfile
+      UserProfile,
     },
 
     computed: {

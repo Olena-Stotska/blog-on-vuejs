@@ -1,5 +1,12 @@
 <template>
   <form @submit="singIn">
+
+    <div class="title-form">
+      <h1>Welcome back.</h1>
+      <h2>Sign in to access your personalized homepage, follow authors and topics you love,
+          and clap for stories that matter to you.</h2>
+    </div>
+
     <label class="form-group">
       <div class="title-input">
         <div><span class="star-required">*</span>E-mail:</div>

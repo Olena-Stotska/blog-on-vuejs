@@ -1,5 +1,12 @@
 <template>
   <form @submit="formSubmited">
+
+    <div class="title-form">
+      <h1>Join Blog.</h1>
+      <h2>Create an account to personalize your homepage, follow your favorite
+          authors and publications, applaud stories you love, and more.</h2>
+    </div>
+
     <label class="form-group">
       <div class="title-input">
         <div><span class="star-required">*</span>Full Name:</div>
