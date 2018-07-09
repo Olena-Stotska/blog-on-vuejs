@@ -11,7 +11,7 @@
       <ul class="breadcrumbs">
         <li class="filter"><a href="#">Home</a></li>
         <li class="filter"><a href="#">Tech</a></li>
-        <li class="filter"><a href="#">Polotics</a></li>
+        <li class="filter"><a href="#">Politics</a></li>
         <li class="filter"><a href="#">Culture</a></li>
       </ul>
     </div>
@@ -26,12 +26,10 @@ import { mapState } from 'vuex'
 
   export default {
     name: 'Home',
-
     components: {
       FormRegistration,
       UserProfile,
     },
-
     computed: {
       ...mapState(['isLogged'])
     }

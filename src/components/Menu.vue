@@ -2,10 +2,10 @@
   <transition name="fade">
     <div class="popover" v-if="isOpen">
       <ul class="menu">
-        <li><a href="#">New Publication</a></li>
-        <li class="line"><a href="#">Stories</a></li>
+        <li><router-link to="/posts/new">New Publication</router-link></li>
+   <!--      <li class="line"><a href="#">Stories</a></li>
         <li><a href="#">Profile</a></li>
-        <li class="line"><a href="#">Settings</a></li>
+        <li class="line"><a href="#">Settings</a></li> -->
         <li><a href="#" @click="signOut">Sign Out</a></li>
       </ul>
     </div>

@@ -4,12 +4,16 @@ import { storage } from './storage'
 
 Vue.use(Vuex)
 
+let counter = 0
+
+const generateId = () => Date.now() + (counter++)
+
 export default new Vuex.Store({
   state: {
     posts: [],
     users: [],
     currentUser: '',
-    isLogged: false
+    isLogged: false,
   },
 
   plugins: [
@@ -28,6 +32,7 @@ export default new Vuex.Store({
 
   mutations: {
     addUser(state, user) {
+      user.id = generateId()
       state.users.push(user)
     },
 
@@ -40,6 +45,10 @@ export default new Vuex.Store({
     logout(state) {
       state.isLogged = false
       state.currentUser = ''
+    },
+
+    createPost(state, post) {
+      state.posts.push(post)
     }
   },
 
@@ -60,6 +69,13 @@ export default new Vuex.Store({
 
     logout({ commit }) {
       commit('logout')
+    },
+
+    createPost({ commit, getters }, post) {
+      commit('createPost', {
+        userId: getters.currentUser.id,
+        ...post
+      })
     }
   }
 })
