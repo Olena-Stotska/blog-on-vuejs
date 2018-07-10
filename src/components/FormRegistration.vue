@@ -44,13 +44,13 @@ export default {
 
 .redistration {
   a {
-    color: map-get($colors, secondary);
     padding: 8px 16px;
     font-size: .9rem;
-    border: 1px solid map-get($colors, secondary);
     margin: 0 10px;
     border-radius: 4px;
     transition: all 0.5s;
+    color: map-get($colors, secondary);
+    border: 1px solid map-get($colors, secondary);
 
     &:hover {
       color: map-get($colors, secondary-hover);

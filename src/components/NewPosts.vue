@@ -33,8 +33,8 @@
       <div class="tag-output"></div>
     </div>
 
-    <div class="select">
-       <select v-model="selected" id="slct">
+    <div class="theme">
+       <select v-model="selected">
         <option disabled value="">Select a theme...</option>
         <option>Tech</option>
         <option>Politics</option>
@@ -42,12 +42,12 @@
         <option>Other</option>
       </select>
 
-      <span>{{ selected }}</span>
+      <span class="step-name">{{ selected }}</span>
     </div>
 
     <div class="save">
-      <button class="draft" @click="saveDraft">save draft</button>
-      <button class="publication" @click="publish">publish</button>
+      <button class="draft" @click="saveDraft">Save draft</button>
+      <button class="publication" @click="publish">Publish</button>
     </div>
   </div>
 </template>
@@ -109,7 +109,7 @@ export default {
 
   h1 {
     flex: 1;
-    margin-left: 15px;
+    text-align: center;
   }
 }
 
@@ -131,8 +131,8 @@ form {
     font-size: 1rem;
     font-weight: 500;
     border: transparent;
-    border-bottom: 1px solid map-get($colors, border);
     outline: none;
+    border-bottom: 1px solid map-get($colors, primary);
 
     &::placeholder {
       color: map-get($colors, primary);
@@ -175,71 +175,91 @@ form {
   }
 }
 
-// .theme {
-//   margin: 30px 0;
-
-  // select {
-  //   background-color: map-get($colors, border);
-  //   border: none;
-  //   padding: 10px;
-  //   border-radius: 10px;
-  //   font-size: 1.2rem;
-  //   outline: none;
-  //   margin-right: 10px;
-  // }
+.theme {
+  margin: 30px 0;
 
   select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0 !important;
-    background: #2c3e50;
-    background-image: none;
+    border: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    outline: none;
+    margin-right: 10px;
+    color: map-get($colors, primary);
+    background-color: map-get($colors, border);
   }
-  /* Custom Select */
-  .select {
-    position: relative;
-    display: block;
-    width: 20em;
-    height: 3em;
-    line-height: 3;
-    background: #2c3e50;
-    overflow: hidden;
-    border-radius: .25em;
+}
+
+.save {
+  margin-bottom: 20px;
+
+  button {
+    padding: 8px 16px;
+    font-size: 1.2rem;
+    margin: 0 10px;
+    border-radius: 4px;
+    transition: all 0.5s;
+    background-color: transparent;
+    color: map-get($colors, secondary);
+    border: 1px solid map-get($colors, secondary);
+
+    &:hover {
+      color: map-get($colors, secondary-hover);
+      border: 1px solid map-get($colors, secondary-hover);
+    }
   }
-  select {
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0 0 0 .5em;
-    color: #fff;
-    cursor: pointer;
+
+  .draft {
+    border: none;
+    color: map-get($colors, primary);
+
+    &:hover {
+      border: 1px solid map-get($colors, primary);
+    }
   }
-  select::-ms-expand {
-    display: none;
+}
+
+@media(min-width: #{map-get($breakpoints, small)}) {
+  .create-post {
+    padding: 25px;
   }
-  /* Arrow */
-  .select::after {
-    content: '\25BC';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    padding: 0 1em;
-    background: #34495e;
-    pointer-events: none;
+
+  form {
+    margin: 30px 0;
+
+    input {
+      font-size: 1.4rem;
+      width: 100%;
+    }
   }
-  /* Transition */
-  .select:hover::after {
-    color: #f39c12;
+
+  .step-name {
+    font-size: 1.4rem;
+    width: 23%;
   }
-  .select::after {
-    -webkit-transition: .25s all ease;
-    -o-transition: .25s all ease;
-    transition: .25s all ease;
+
+  .steps-post {
+    margin-bottom: 40px;
   }
-// }
+}
+
+@media(min-width: #{map-get($breakpoints, medium)}) {
+  .create-post {
+    padding: 25px 50px;
+  }
+
+  form {
+    input {
+      width: 60%;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, large)}) {
+  .create-post {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
 </style>

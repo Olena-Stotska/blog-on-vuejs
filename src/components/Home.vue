@@ -2,7 +2,7 @@
   <nav class="nav-bar">
     <div class="metabar">
       <span>similar of <a href="https://medium.com/">Midium</a></span>
-      <h1 class="name">Brainwash</h1>
+      <h1 class="name">Brainstorm</h1>
       <FormRegistration />
       <UserProfile v-if="isLogged" />
     </div>
