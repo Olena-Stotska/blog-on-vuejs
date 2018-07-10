@@ -1,11 +1,6 @@
 <template>
   <div class="container">
-    <div class="brain-logo">
-      <button :title="message" class="btn-home">
-        <router-link to="/"><img src="../assets/img/brain.svg" alt="Logo"></router-link>
-      </button>
-      <h1>New Post</h1>
-    </div>
+    <h1 class="title">New Post</h1>
 
     <form ref="form" @submit.prevent>
       <label class="steps-post">
@@ -123,11 +118,6 @@ export default {
 
 <style scoped lang="scss">
 @import '@/styles/variables.scss';
-
-.container {
-  padding: 15px 10px;
-
-}
 
 form {
   margin: 20px 0;
@@ -251,10 +241,6 @@ form {
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
-  .container {
-    padding: 25px;
-  }
-
   form {
     margin: 30px 0;
 
@@ -267,13 +253,6 @@ form {
   .step-name {
     font-size: 1.4rem;
     width: 25%;
-  }
-}
-
-@media(min-width: #{map-get($breakpoints, medium)}) {
-  .container {
-    width: 80%;
-    margin: 0 auto;
   }
 }
 </style>

@@ -1,11 +1,6 @@
 <template>
   <div class="container">
-    <div class="brain-logo">
-      <button :title="message" class="btn-home">
-        <router-link to="/"><img src="../assets/img/brain.svg" alt="Logo"></router-link>
-      </button>
-      <h1>Your Stories</h1>
-    </div>
+    <h1>Your Stories</h1>
 
     <div class="tabs">
       <ul>
@@ -30,10 +25,6 @@ export default {
 
 <style scoped lang="scss">
 @import '../styles/variables.scss';
-
-.brain-logo {
-  padding: 15px 10px;
-}
 
 .tabs {
 
@@ -62,10 +53,6 @@ export default {
 
 
 @media(min-width: #{map-get($breakpoints, small)}) {
-  .brain-logo {
-    padding: 30px 20px;
-  }
-
   .tabs {
     a {
       font-size: 1.4rem;

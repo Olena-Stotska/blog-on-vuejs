@@ -48,6 +48,7 @@ export default new Vuex.Store({
     },
 
     createPost(state, post) {
+      post.id = generateId()
       state.posts.push(post)
     }
   },

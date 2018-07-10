@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="user-logo" @click="menuVisible = !menuVisible">{{ initials }}</div>
+  <div @click="menuVisible = !menuVisible">
+    <div class="user-logo">{{ initials }}</div>
     <Menu :open="menuVisible" />
   </div>
 </template>

@@ -1,12 +1,5 @@
 <template>
   <nav class="nav-bar">
-    <div class="metabar">
-      <span>similar of <a href="https://medium.com/">Midium</a></span>
-      <h1 class="name">Brainstorm</h1>
-      <FormRegistration />
-      <UserProfile v-if="isLogged" />
-    </div>
-
     <div class="tags controls">
       <ul class="breadcrumbs">
         <li class="filter"><a href="#">Home</a></li>
@@ -19,56 +12,14 @@
 </template>
 
 <script>
-import FormRegistration from './FormRegistration'
-import UserProfile from './UserProfile'
-
-import { mapState } from 'vuex'
-
-  export default {
-    name: 'Home',
-    components: {
-      FormRegistration,
-      UserProfile,
-    },
-    computed: {
-      ...mapState(['isLogged'])
-    }
-  }
+export default {
+  name: 'Home'
+}
 </script>
 
 <style scoped lang="scss">
 @import "../styles/variables.scss";
 
-.metabar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  margin: 5px 1%;
-
-  span {
-    display: none;
-    font-weight: 100;
-    font-size: 0.9rem;
-    color: map-get($colors, primary);
-
-    a {
-      text-decoration: underline;
-
-      &:hover {
-        text-decoration: underline;
-        color: map-get($colors, primary-hover);
-      }
-    }
-  }
-
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-  }
-}
 
 .breadcrumbs {
   display: flex;
@@ -88,14 +39,6 @@ import { mapState } from 'vuex'
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
-  .metabar {
-    margin-top: 20px;
-
-    span {
-      display: block;
-    }
-  }
-
   .breadcrumbs {
     li {
       margin-left: 24px;

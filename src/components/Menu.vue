@@ -61,7 +61,7 @@ export default {
 
 .popover {
   position: absolute;
-  top: 60px;
+  top: 66px;
   right: 0;
   z-index: 10;
   opacity: 1;
