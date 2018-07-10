@@ -7,7 +7,7 @@
       <h1>New Post</h1>
     </div>
 
-    <form>
+    <form ref="form">
       <label class="steps-post">
         <div class="step-name">Title<span class="form-asterisk">*</span></div>
         <transition name="fadeRight">
@@ -23,32 +23,32 @@
         </transition>
         <input type="text" name="title" v-model.trim="description" v-validity="isValidDescription" placeholder="Short Description" maxlength="280" required >
       </label>
+
+      <vue-editor v-model="content"></vue-editor>
+
+      <div class="tags">
+        <label class="step-name">Tags</label>
+        <input type="text" v-model.trim="tags" placeholder="Add tags...">
+        <div class="tag-output"></div>
+      </div>
+
+      <div class="theme">
+         <select v-model="selected">
+          <option disabled value="">Select a theme...</option>
+          <option>Tech</option>
+          <option>Politics</option>
+          <option>Culture</option>
+          <option>Other</option>
+        </select>
+
+        <span class="step-name">{{ selected }}</span>
+      </div>
+
+      <div class="save">
+        <button class="draft" @click="saveDraft">Save draft</button>
+        <button class="publication" @click="publish">Publish</button>
+      </div>
     </form>
-
-    <vue-editor v-model="content"></vue-editor>
-
-    <div class="tags">
-      <label class="step-name">Tags</label>
-      <input type="text" v-model.trim="tags" placeholder="Add tags...">
-      <div class="tag-output"></div>
-    </div>
-
-    <div class="theme">
-       <select v-model="selected">
-        <option disabled value="">Select a theme...</option>
-        <option>Tech</option>
-        <option>Politics</option>
-        <option>Culture</option>
-        <option>Other</option>
-      </select>
-
-      <span class="step-name">{{ selected }}</span>
-    </div>
-
-    <div class="save">
-      <button class="draft" @click="saveDraft">Save draft</button>
-      <button class="publication" @click="publish">Publish</button>
-    </div>
   </div>
 </template>
 
@@ -76,6 +76,10 @@ export default {
     ...mapActions(['createPost']),
 
     publish() {
+      if (!this.$refs.form.checkValidity()) {
+        return
+      }
+
       this.createPost({
         title: this.title,
         description: this.description,
@@ -132,6 +136,7 @@ form {
     font-weight: 500;
     border: transparent;
     outline: none;
+    width: 65%;
     border-bottom: 1px solid map-get($colors, primary);
 
     &::placeholder {
@@ -145,11 +150,30 @@ form {
   }
 }
 
+.validation {
+  color: map-get($colors, error);
+  animation-duration: 0.5s;
+  position: absolute;
+  top: -20px;
+  right: 0;
+}
+
+.fadeRight-enter,
+.fadeRight-enter-to {
+  animation: fadeInRight 0.6s;
+}
+
+.fadeRight-leave,
+.fadeRight-leave-to {
+  animation: fadeOutRight 0.6s;
+}
+
 .steps-post {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin: 40px 0;
+  position: relative;
 }
 
 .step-name {
@@ -199,6 +223,7 @@ form {
     margin: 0 10px;
     border-radius: 4px;
     transition: all 0.5s;
+    outline: none;
     background-color: transparent;
     color: map-get($colors, secondary);
     border: 1px solid map-get($colors, secondary);
@@ -210,7 +235,7 @@ form {
   }
 
   .draft {
-    border: none;
+    border: 1px solid #fff;
     color: map-get($colors, primary);
 
     &:hover {
@@ -235,28 +260,11 @@ form {
 
   .step-name {
     font-size: 1.4rem;
-    width: 23%;
-  }
-
-  .steps-post {
-    margin-bottom: 40px;
+    width: 25%;
   }
 }
 
 @media(min-width: #{map-get($breakpoints, medium)}) {
-  .create-post {
-    padding: 25px 50px;
-  }
-
-  form {
-    input {
-      width: 60%;
-      margin: 0 auto;
-    }
-  }
-}
-
-@media(min-width: #{map-get($breakpoints, large)}) {
   .create-post {
     width: 80%;
     margin: 0 auto;
