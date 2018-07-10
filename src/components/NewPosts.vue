@@ -7,7 +7,7 @@
       <h1>New Post</h1>
     </div>
 
-    <form ref="form">
+    <form ref="form" @submit.prevent>
       <label class="steps-post">
         <div class="step-name">Title<span class="form-asterisk">*</span></div>
         <transition name="fadeRight">
@@ -27,9 +27,15 @@
       <vue-editor v-model="content"></vue-editor>
 
       <div class="tags">
-        <label class="step-name">Tags</label>
-        <input type="text" v-model.trim="tags" placeholder="Add tags...">
-        <div class="tag-output"></div>
+        <label class="step-name">Tags
+          <input @keydown.enter.prevent="addTags" type="text" v-model.trim="tag" placeholder="Add tags...">
+        </label>
+        <div class="block-tag">
+          <div class="tag-output" v-for="tag in tags" :key="tag">
+            {{ tag }}
+            <button type="button" class="delete-tag" @click="deleteTag(tag)">x</button>
+          </div>
+        </div>
       </div>
 
       <div class="theme">
@@ -66,6 +72,7 @@ export default {
     title: '',
     description: '',
     content: '',
+    tag: '',
     tags: [],
     selected: '',
     isDraft: false,
@@ -93,6 +100,22 @@ export default {
     saveDraft() {
       this.isDraft = true
       this.publish()
+    },
+
+    addTags() {
+      const tag = this.tag[0].toUpperCase() + this.tag.slice(1).toLowerCase()
+      this.tag = ''
+
+      if(!tag || this.tags.includes(tag)) {
+        return
+      }
+
+      this.tags.push(tag)
+    },
+
+    deleteTag(tag) {
+      const indexTag = this.tags.indexOf(tag)
+      this.tags.splice(indexTag, 1)
     }
   }
 }
@@ -196,6 +219,36 @@ form {
     width: 100px;
     outline: none;
     background-color: map-get($colors, border);
+  }
+
+  .tag-output {
+    padding: 5px 10px;
+    margin: 10px 10px 0 0;
+    display: inline-flex;
+    font-size: 1.2rem;
+    border-radius: 10px;
+    font-weight: 700;
+    color: map-get($colors, primary);
+    background-color: map-get($colors, border);
+  }
+
+  button {
+    margin-left: 5px;
+    outline: none;
+    border: none;
+    padding-right: 0;
+    font-size: 1.2rem;
+    color: map-get($colors, primary);
+    background-color: transparent;
+    text-shadow: 1px 1px 1px map-get($colors, primary);
+
+    &:hover {
+      color: map-get($colors, primary-hover);
+    }
+
+    &:active {
+      text-shadow: none;
+    }
   }
 }
 
