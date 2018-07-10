@@ -2,9 +2,13 @@
   <transition name="fade">
     <div class="popover" v-if="isOpen">
       <ul class="menu">
-        <li><router-link to="/posts/new">New Publication</router-link></li>
-   <!--      <li class="line"><a href="#">Stories</a></li>
-        <li><a href="#">Profile</a></li>
+        <li>
+          <router-link to="/posts/new">New Publication</router-link>
+        </li>
+        <li class="line">
+          <router-link to="/posts">Your Stories</router-link>
+        </li>
+        <!-- <li><a href="#">Profile</a></li>
         <li class="line"><a href="#">Settings</a></li> -->
         <li><a href="#" @click="signOut">Sign Out</a></li>
       </ul>
@@ -82,13 +86,13 @@ export default {
 .menu {
   font-size: 1rem;
   color: #000;
-  list-style: none;
-  padding: 0;
 
   li {
-    margin-bottom: 40px;
-    margin-top: 50px;
+    margin-bottom: 10px;
     cursor: pointer;
+    height: 60px;
+    display: flex;
+    align-items: center;
 
     &.line {
       margin-bottom: 30px;
@@ -100,6 +104,9 @@ export default {
   a {
     font-weight: 500;
     padding-left: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
   }
 }
 

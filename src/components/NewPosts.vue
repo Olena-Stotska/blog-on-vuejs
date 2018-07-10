@@ -1,6 +1,6 @@
 <template>
-  <div class="create-post">
-    <div class="header-post">
+  <div class="container">
+    <div class="brain-logo">
       <button :title="message" class="btn-home">
         <router-link to="/"><img src="../assets/img/brain.svg" alt="Logo"></router-link>
       </button>
@@ -68,7 +68,7 @@ export default {
     VueEditor
   },
   data: () => ({
-    message: 'To home',
+    message: 'To Home',
     title: '',
     description: '',
     content: '',
@@ -124,31 +124,9 @@ export default {
 <style scoped lang="scss">
 @import '@/styles/variables.scss';
 
-.create-post {
+.container {
   padding: 15px 10px;
 
-}
-
-.header-post {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  h1 {
-    flex: 1;
-    text-align: center;
-  }
-}
-
-.btn-home {
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-
-  img {
-    width: 60px;
-    height: 60px;
-  }
 }
 
 form {
@@ -174,21 +152,9 @@ form {
 }
 
 .validation {
-  color: map-get($colors, error);
-  animation-duration: 0.5s;
   position: absolute;
   top: -20px;
   right: 0;
-}
-
-.fadeRight-enter,
-.fadeRight-enter-to {
-  animation: fadeInRight 0.6s;
-}
-
-.fadeRight-leave,
-.fadeRight-leave-to {
-  animation: fadeOutRight 0.6s;
 }
 
 .steps-post {
@@ -271,20 +237,7 @@ form {
   margin-bottom: 20px;
 
   button {
-    padding: 8px 16px;
-    font-size: 1.2rem;
     margin: 0 10px;
-    border-radius: 4px;
-    transition: all 0.5s;
-    outline: none;
-    background-color: transparent;
-    color: map-get($colors, secondary);
-    border: 1px solid map-get($colors, secondary);
-
-    &:hover {
-      color: map-get($colors, secondary-hover);
-      border: 1px solid map-get($colors, secondary-hover);
-    }
   }
 
   .draft {
@@ -298,7 +251,7 @@ form {
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
-  .create-post {
+  .container {
     padding: 25px;
   }
 
@@ -318,7 +271,7 @@ form {
 }
 
 @media(min-width: #{map-get($breakpoints, medium)}) {
-  .create-post {
+  .container {
     width: 80%;
     margin: 0 auto;
   }

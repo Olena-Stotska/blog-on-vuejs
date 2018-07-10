@@ -1,5 +1,10 @@
 @import './variables';
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 a {
   font-weight: 300;
   text-decoration: none;
@@ -9,3 +14,61 @@ a {
     color: map-get($colors, primary-hover);
   }
 }
+
+button {
+  padding: 5px 15px;
+  font-size: 1.2rem;
+  border-radius: 4px;
+  transition: all 0.5s;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: map-get($colors, secondary);
+  border: 1px solid map-get($colors, secondary);
+
+  &:hover {
+    color: map-get($colors, secondary-hover);
+    border: 1px solid map-get($colors, secondary-hover);
+  }
+}
+
+.brain-logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    flex: 1;
+    text-align: center;
+    margin-left: -60px;
+  }
+
+  .btn-home {
+    border: none;
+
+    img {
+      width: 60px;
+      height: 60px;
+    }
+  }
+}
+
+/*
+* Animation, with often use
+*/
+
+.validation {
+  color: map-get($colors, error);
+  animation-duration: 0.5s;
+}
+
+.fadeRight-enter,
+.fadeRight-enter-to {
+  animation: fadeInRight 0.6s;
+}
+
+.fadeRight-leave,
+.fadeRight-leave-to {
+  animation: fadeOutRight 0.6s;
+}
+

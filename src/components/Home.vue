@@ -71,13 +71,11 @@ import { mapState } from 'vuex'
 }
 
 .breadcrumbs {
-  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
 
   li {
-    list-style-type: none;
     margin-left: 15px;
     font-size: 1.2rem;
     text-transform: uppercase;
@@ -91,6 +89,8 @@ import { mapState } from 'vuex'
 
 @media(min-width: #{map-get($breakpoints, small)}) {
   .metabar {
+    margin-top: 20px;
+
     span {
       display: block;
     }

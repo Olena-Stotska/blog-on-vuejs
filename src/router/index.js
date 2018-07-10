@@ -2,13 +2,21 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
 import NewPosts from '../components/NewPosts'
+import ListPosts from '../components/ListPosts'
+import ListDrafts from '../components/ListDrafts'
+import ListPublic from '../components/ListPublic'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     { path: '/', component: Home },
-    // { path: '/posts', component: ListPosts },
+    { path: '/posts', component: ListPosts,  redirect: { name: 'drafts' },
+      children: [
+        { path: 'drafts', name: 'drafts', component: ListDrafts },
+        { path: 'public', name: 'public', component: ListPublic }
+      ]
+    },
     { path: '/posts/new', component: NewPosts },
   ]
 })
