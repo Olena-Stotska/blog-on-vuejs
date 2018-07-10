@@ -16,10 +16,7 @@
 
 <script>
 export default {
-  name: 'ListPosts',
-  data: () => ({
-    message: "To Home"
-  })
+  name: 'ListPosts'
 }
 </script>
 

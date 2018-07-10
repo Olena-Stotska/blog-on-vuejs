@@ -27,6 +27,14 @@ export default new Vuex.Store({
 
     findUser(state) {
       return (email) => state.users.find(user => user.email === email)
+    },
+
+    drafts(state) {
+      return state.posts.filter(post => post.draft)
+    },
+
+    posts(state) {
+      return state.posts.filter(post => !post.draft)
     }
   },
 

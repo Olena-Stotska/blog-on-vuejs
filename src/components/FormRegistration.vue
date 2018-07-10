@@ -44,9 +44,9 @@ export default {
 
 .redistration {
   a {
-    padding: 8px 16px;
+    padding: 8px;
     font-size: .9rem;
-    margin: 0 10px;
+    margin: 0 3px;
     border-radius: 4px;
     transition: all 0.5s;
     color: map-get($colors, secondary);
@@ -63,6 +63,15 @@ export default {
 
     &:hover {
       border: none;
+    }
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, small)}) {
+  .redistration {
+    a {
+      padding: 8px 16px;
+      margin: 0 15px;
     }
   }
 }

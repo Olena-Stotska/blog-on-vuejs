@@ -114,6 +114,7 @@ export default {
   .popover {
     width: 250px;
     right: 25px;
+    top: 81px;
 
     &:before {
       right: 13px;

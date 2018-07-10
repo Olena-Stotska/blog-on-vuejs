@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="metabar">
-      <span>similar of <a href="https://medium.com/">Midium</a></span>
+      <span>similar to <a href="https://medium.com/">Midium</a></span>
 
       <div :title="message" class="brain-logo">
         <router-link to="/">
@@ -28,6 +28,9 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'App',
+  data: () => ({
+    message: 'To Home',
+  }),
   components: {
     UserProfile,
     FormRegistration
@@ -57,6 +60,7 @@ export default {
     width: 60px;
     height: 60px;
     margin-right: 10px;
+    display: none;
   }
 }
 
@@ -64,7 +68,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 10px 20px;
   margin: 5px 1%;
 
   span {
@@ -85,12 +89,15 @@ export default {
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
-  .brain-logo {
-    margin-left: -60px;
+  .logo {
+    img {
+      display: block;
+    }
   }
 
   .metabar {
     margin-top: 20px;
+    padding: 0 20px;
 
     span {
       display: block;

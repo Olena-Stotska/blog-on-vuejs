@@ -63,7 +63,6 @@ export default {
     VueEditor
   },
   data: () => ({
-    message: 'To Home',
     title: '',
     description: '',
     content: '',
@@ -89,7 +88,7 @@ export default {
         tags: this.tags,
         selected: this.selected,
         draft: this.isDraft
-      }).then(() => this.$router.push('/'))
+      }).then(() => this.$router.push({ name: 'drafts'}))
     },
 
     saveDraft() {
@@ -189,11 +188,9 @@ form {
   }
 
   button {
-    margin-left: 5px;
-    outline: none;
+    padding: 0 10px;
     border: none;
     padding-right: 0;
-    font-size: 1.2rem;
     color: map-get($colors, primary);
     background-color: transparent;
     text-shadow: 1px 1px 1px map-get($colors, primary);
