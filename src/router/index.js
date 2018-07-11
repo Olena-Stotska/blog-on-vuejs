@@ -11,12 +11,12 @@ Vue.use(Router)
 export default new Router({
   routes: [
     { path: '/', component: Home },
-    { path: '/posts', component: ListPosts,  redirect: { name: 'drafts' },
+    { path: '/posts', name: 'posts', component: ListPosts,  redirect: { name: 'drafts' },
       children: [
         { path: 'drafts', name: 'drafts', component: ListDrafts },
         { path: 'public', name: 'public', component: ListPublic }
       ]
     },
-    { path: '/posts/new', component: NewPosts },
+    { path: '/posts/new', name: 'newPost', component: NewPosts },
   ]
 })

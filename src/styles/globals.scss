@@ -32,24 +32,18 @@ button {
   }
 }
 
-h1 {
-  font-size: 2.5rem;
-}
-
 .container {
   padding: 15px 10px;
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+  }
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
   .container {
     padding: 25px;
-  }
-}
-
-@media(min-width: #{map-get($breakpoints, medium)}) {
-  .container {
-    width: 80%;
-    margin: 0 auto;
   }
 }
 

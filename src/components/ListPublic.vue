@@ -14,7 +14,7 @@ export default {
   name: 'ListPublic',
   computed: {
     ...mapGetters(['posts']),
-  }
+  },
 }
 </script>
 

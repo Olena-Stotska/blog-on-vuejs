@@ -19,19 +19,7 @@
         <input type="text" name="title" v-model.trim="description" v-validity="isValidDescription" placeholder="Short Description" maxlength="280" required >
       </label>
 
-      <label class="file-upload">
-        <div class="file-block">
-          <div class="step-name">Image</div>
-          <div class="icon-block" v-if="!userImage">
-            <i class="icon-camera"></i>
-            <input type="file" round class="upload-img" @change="onFileChange" />
-          </div>
-          <div v-else class="uploaded-img">
-            <img class="img" :src="userImage" />
-            <button type="click" class="delete-img" @click="deleteImage">Delete Image</button>
-          </div>
-        </div>
-      </label>
+      <UploadFile @uploadedImage="setImage" />
 
       <vue-editor v-model="content"></vue-editor>
 
@@ -68,13 +56,16 @@
 </template>
 
 <script>
+import UploadFile from './UploadFile'
+
 import { VueEditor } from 'vue2-editor'
 import { mapActions } from 'vuex'
 
 export default {
   name: 'NewPosts',
   components: {
-    VueEditor
+    VueEditor,
+    UploadFile
   },
   data: () => ({
     title: '',
@@ -83,7 +74,7 @@ export default {
     tag: '',
     tags: [],
     selected: '',
-    userImage: '',
+    image: '',
     isDraft: false,
     isValidTitle: true,
     isValidDescription: true,
@@ -99,6 +90,7 @@ export default {
       this.createPost({
         title: this.title,
         description: this.description,
+        image: this.image,
         content: this.content,
         tags: this.tags,
         selected: this.selected,
@@ -127,29 +119,9 @@ export default {
       this.tags.splice(indexTag, 1)
     },
 
-    onFileChange(event) {
-      const files = event.target.files || event.dataTransfer.files
-
-      if (!files.length) {
-        return
-      }
-
-      this.createImage(files[0])
-    },
-
-    createImage(file) {
-      const reader = new FileReader()
-
-      reader.onload = (event) => {
-        this.userImage = event.target.result
-      }
-
-      reader.readAsDataURL(file)
-    },
-
-    deleteImage() {
-      this.userImage = ''
-     }
+    setImage(image) {
+      this.image = image
+    }
   }
 }
 </script>
@@ -183,54 +155,6 @@ form {
   position: absolute;
   top: -20px;
   right: 0;
-}
-
-.file-block {
-  display: flex;
-  margin: 40px 0;
-
-  .uploaded-img {
-    width: 100%;
-    margin-left: 20px;
-
-    img {
-      width: 100%;
-      height: auto;
-    }
-
-    button {
-      margin: 10px 0 0 0;
-    }
-  }
-
-  .icon-block {
-    position: relative;
-    width: 80px;
-    height: 80px;
-    margin-left: 20px;
-    border: 3px solid #9E9E9E;
-    border-radius: 15px;
-    background-color: #f0f0f0;
-
-    i {
-      position: absolute;
-      top: 0;
-      left: 0;
-      margin-left: -3px;
-      margin-top: 1px;
-      width: 100%;
-      height: 100%;
-      font-size: 4rem;
-      color: #9E9E9E;
-    }
-  }
-
-  .upload-img {
-    opacity: 0;
-    cursor: pointer;
-    width: 100%;
-    height: 100%;
-  }
 }
 
 .steps-post {

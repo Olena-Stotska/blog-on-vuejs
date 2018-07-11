@@ -3,10 +3,10 @@
     <div class="popover" v-if="isOpen">
       <ul class="menu">
         <li>
-          <router-link to="/posts/new">New Publication</router-link>
+          <router-link :to="{ name: 'newPost' }">New Story</router-link>
         </li>
         <li class="line">
-          <router-link to="/posts">Your Stories</router-link>
+          <router-link :to="{ name: 'posts' }">Your Stories</router-link>
         </li>
         <!-- <li><a href="#">Profile</a></li>
         <li class="line"><a href="#">Settings</a></li> -->

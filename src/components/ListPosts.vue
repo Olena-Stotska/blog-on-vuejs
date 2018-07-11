@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <h1>Your Stories</h1>
+    <div class="header">
+      <h1>Your Stories</h1>
+      <router-link tag="button" :to="{ name: 'newPost' }">Write a story</router-link>
+    </div>
 
     <div class="tabs">
       <ul>
@@ -23,6 +26,12 @@ export default {
 <style scoped lang="scss">
 @import '../styles/variables.scss';
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .tabs {
 
   ul {
@@ -31,7 +40,7 @@ export default {
   }
 
   li {
-    margin: 20px 20px 10px 20px;
+    margin: 20px 20px 10px 0;
   }
 
   a {
@@ -44,15 +53,6 @@ export default {
      .router-link-exact-active {
       color: map-get($colors, secondary);
       border-bottom: 2px solid map-get($colors, secondary);
-    }
-  }
-}
-
-
-@media(min-width: #{map-get($breakpoints, small)}) {
-  .tabs {
-    a {
-      font-size: 1.4rem;
     }
   }
 }
