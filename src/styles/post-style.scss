@@ -1,0 +1,50 @@
+@import './variables.scss';
+
+article {
+  padding-bottom: 10px;
+  display: flex;
+  width: 90%;
+  justify-content: flex-start;
+  align-items: center;
+  border-bottom: 1px solid map-get($colors, border);
+
+  .post {
+    max-width: 90%;
+    cursor: pointer;;
+  }
+
+  .btn-delete-post {
+    margin-left: 20px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    color: map-get($colors, primary);
+    background-color: map-get($colors, border);
+
+    &:hover {
+      color: map-get($colors, error);
+    }
+  }
+}
+
+.title-post,
+.description {
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 5px;
+  text-overflow: ellipsis;
+}
+
+.title-post {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: map-get($colors, primary);
+}

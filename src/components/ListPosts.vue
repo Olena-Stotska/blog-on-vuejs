@@ -30,6 +30,11 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  button {
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
 }
 
 .tabs {

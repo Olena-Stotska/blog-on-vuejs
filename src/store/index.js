@@ -58,6 +58,11 @@ export default new Vuex.Store({
     createPost(state, post) {
       post.id = generateId()
       state.posts.push(post)
+    },
+
+    deletePost(state, { id }) {
+      const indexPost = state.posts.findIndex(post => post.id === id)
+      state.posts.splice(indexPost, 1)
     }
   },
 
@@ -85,6 +90,10 @@ export default new Vuex.Store({
         userId: getters.currentUser.id,
         ...post
       })
+    },
+
+    deletePost({ commit }, post) {
+      commit('deletePost', post)
     }
   }
 })
