@@ -1,19 +1,34 @@
 <template>
-  <nav class="nav-bar">
-    <div class="tags controls">
-      <ul class="breadcrumbs">
-        <li class="filter"><a href="#">Home</a></li>
-        <li class="filter"><a href="#">Tech</a></li>
-        <li class="filter"><a href="#">Politics</a></li>
-        <li class="filter"><a href="#">Culture</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div>
+    <nav class="nav-bar">
+      <div class="tags controls">
+        <ul class="breadcrumbs">
+          <li class="filter"><a href="#">Home</a></li>
+          <li class="filter"><a href="#">Tech</a></li>
+          <li class="filter"><a href="#">Politics</a></li>
+          <li class="filter"><a href="#">Culture</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <main>
+      <div v-for="post in posts">
+        <h1>{{ post.title }}</h1>
+        <p>{{ post.description }}</p>
+      </div>
+    </main>
+  </div>
+
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Home'
+  name: 'Home',
+  computed: {
+    ...mapGetters(['posts'])
+  }
 }
 </script>
 

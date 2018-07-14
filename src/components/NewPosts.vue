@@ -91,7 +91,6 @@ export default {
         const article = this.getPostById(value.params.id)
 
         this.post = article[0]
-        console.log(this.post)
       }
     }
   },
