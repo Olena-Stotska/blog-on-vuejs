@@ -18,5 +18,6 @@ export default new Router({
       ]
     },
     { path: '/posts/new', name: 'newPost', component: NewPosts },
+    { path: '/posts/:id', name: 'editPost', component: NewPosts },
   ]
 })

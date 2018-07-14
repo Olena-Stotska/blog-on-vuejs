@@ -8,7 +8,7 @@
         <transition name="fadeRight">
           <div class="validation" v-if="!isValidTitle">Write your publication name!</div>
         </transition>
-        <input type="text" name="title" v-model.trim="title" v-validity="isValidTitle" placeholder="Your publication’s name" maxlength="100" required >
+        <input type="text" name="title" v-model.trim="post.title" v-validity="isValidTitle" placeholder="Your publication’s name" maxlength="100" required >
       </label>
 
       <label class="steps-post">
@@ -16,19 +16,19 @@
         <transition name="fadeRight">
           <div class="validation" v-if="!isValidDescription">Write a short Description!</div>
         </transition>
-        <input type="text" name="title" v-model.trim="description" v-validity="isValidDescription" placeholder="Short Description" maxlength="280" required >
+        <input type="text" name="title" v-model.trim="post.description" v-validity="isValidDescription" placeholder="Short Description" maxlength="280" required >
       </label>
 
       <UploadFile @uploadedImage="setImage" />
 
-      <vue-editor v-model="content"></vue-editor>
+      <vue-editor v-model="post.content"></vue-editor>
 
       <div class="tags">
         <label class="step-name">Tags
-          <input @keydown.enter.prevent="addTags" type="text" v-model.trim="tag" placeholder="Add tags...">
+          <input @keydown.enter.prevent="addTags" type="text" v-model.trim="post.tag" placeholder="Add tags...">
         </label>
         <div class="block-tag">
-          <div class="tag-output" v-for="tag in tags" :key="tag">
+          <div class="tag-output" v-for="tag in post.tags" :key="tag">
             {{ tag }}
             <button type="button" class="delete-tag" @click="deleteTag(tag)">x</button>
           </div>
@@ -36,15 +36,15 @@
       </div>
 
       <div class="theme">
-         <select v-model="selected">
-          <option disabled value="">Select a theme...</option>
+         <select v-model="post.topic">
+          <option disabled value="">Select a topic...</option>
           <option>Tech</option>
           <option>Politics</option>
           <option>Culture</option>
           <option>Other</option>
         </select>
 
-        <span class="step-name">{{ selected }}</span>
+        <span class="step-name">{{ post.topic }}</span>
       </div>
 
       <div class="save">
@@ -59,7 +59,7 @@
 import UploadFile from './UploadFile'
 
 import { VueEditor } from 'vue2-editor'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'NewPosts',
@@ -68,17 +68,33 @@ export default {
     UploadFile
   },
   data: () => ({
-    title: '',
-    description: '',
-    content: '',
-    tag: '',
-    tags: [],
-    selected: '',
-    image: '',
-    isDraft: false,
+    post: {
+      title: '',
+      description: '',
+      content: '',
+      tag: '',
+      tags: [],
+      topic: '',
+      image: '',
+      draft: false
+    },
     isValidTitle: true,
     isValidDescription: true,
   }),
+  computed: {
+    ...mapGetters(['getPostById'])
+  },
+  watch: {
+    $route: {
+      immediate: true,
+      handler(value) {
+        const article = this.getPostById(value.params.id)
+
+        this.post = article[0]
+        console.log(this.post)
+      }
+    }
+  },
   methods: {
     ...mapActions(['createPost']),
 
@@ -87,40 +103,33 @@ export default {
         return
       }
 
-      this.createPost({
-        title: this.title,
-        description: this.description,
-        image: this.image,
-        content: this.content,
-        tags: this.tags,
-        selected: this.selected,
-        draft: this.isDraft
-      }).then(() => this.$router.push({ name: 'drafts'}))
+      this.createPost({ ...this.post })
+        .then(() => this.$router.push({ name: 'drafts'}))
     },
 
     saveDraft() {
-      this.isDraft = true
+      this.post.draft = true
       this.publish()
     },
 
     addTags() {
-      const tag = this.tag[0].toUpperCase() + this.tag.slice(1).toLowerCase()
-      this.tag = ''
+      const tag = this.post.tag[0].toUpperCase() + this.post.tag.slice(1).toLowerCase()
+      this.post.tag = ''
 
-      if(!tag || this.tags.includes(tag)) {
+      if(!tag || this.post.tags.includes(tag)) {
         return
       }
 
-      this.tags.push(tag)
+      this.post.tags.push(tag)
     },
 
     deleteTag(tag) {
-      const indexTag = this.tags.indexOf(tag)
-      this.tags.splice(indexTag, 1)
+      const indexTag = this.post.tags.indexOf(tag)
+      this.post.tags.splice(indexTag, 1)
     },
 
     setImage(image) {
-      this.image = image
+      this.post.image = image
     }
   }
 }
