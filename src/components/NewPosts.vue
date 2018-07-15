@@ -90,7 +90,9 @@ export default {
       handler(value) {
         const article = this.getPostById(value.params.id)
 
-        this.post = article[0]
+        if (article.length > 0) {
+          this.post = article[0]
+        }
       }
     }
   },

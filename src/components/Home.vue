@@ -12,7 +12,7 @@
     </nav>
 
     <main>
-      <div v-for="post in posts">
+      <div v-for="post in posts" :key="post.id">
         <h1>{{ post.title }}</h1>
         <p>{{ post.description }}</p>
       </div>

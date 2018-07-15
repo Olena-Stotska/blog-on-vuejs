@@ -1,5 +1,5 @@
 <template>
-  <ListArticles :articles="posts" />
+  <ListArticles :articles="getPostsByUserId" />
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
     ListArticles
   },
   computed: {
-    ...mapGetters(['posts'])
+    ...mapGetters(['getPostsByUserId'])
   }
 }
 </script>

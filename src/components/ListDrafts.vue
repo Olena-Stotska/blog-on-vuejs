@@ -1,5 +1,5 @@
 <template>
-  <ListArticles :articles="drafts" />
+  <ListArticles :articles="getDraftsByUserId" />
 </template>
 
 <script>
@@ -13,7 +13,7 @@ export default {
     ListArticles
   },
   computed: {
-    ...mapGetters(['drafts']),
+    ...mapGetters(['getDraftsByUserId']),
   }
 }
 </script>

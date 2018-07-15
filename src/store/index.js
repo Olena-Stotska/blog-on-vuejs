@@ -37,6 +37,20 @@ export default new Vuex.Store({
       return state.posts.filter(post => !post.draft)
     },
 
+    getDraftsByUserId(state, getters) {
+      const allDrafts = getters.drafts
+      const userId = getters.currentUser.id
+
+      return allDrafts.filter(userPost => userPost.userId === userId)
+    },
+
+    getPostsByUserId(state, getters) {
+      const allPosts = getters.posts
+      const userId = getters.currentUser.id
+
+      return allPosts.filter(userPost => userPost.userId === userId)
+    },
+
     getPostById: (state) => (id) => {
       return state.posts.filter(post => post.id === id)
     }
