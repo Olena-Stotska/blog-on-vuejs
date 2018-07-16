@@ -76,7 +76,8 @@ export default {
       tags: [],
       topic: '',
       image: '',
-      draft: false
+      draft: false,
+      date: new Date().toDateString()
     },
     isValidTitle: true,
     isValidDescription: true,

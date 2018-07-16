@@ -106,6 +106,7 @@ export default new Vuex.Store({
     createPost({ commit, getters }, post) {
       commit('createPost', {
         userId: getters.currentUser.id,
+        userName: getters.currentUser.name,
         ...post
       })
     },

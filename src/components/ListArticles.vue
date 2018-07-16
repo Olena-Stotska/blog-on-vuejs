@@ -3,7 +3,7 @@
     <article v-for="article in articles" :key="article.id">
       <router-link tag="div" class="post" :to="{ name: 'editPost', params: { id: article.id } }">
         <h2 class="title-post" :title="titleEdit">{{ article.title }}</h2>
-        <div class="description">{{ article.description }}</div>
+        <div class="date">{{ article.date }}</div>
       </router-link>
        <div @click="selectedPost = article" class="btn-delete-post" :title="titleDelete">
         <i class="icon-trash"></i>

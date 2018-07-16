@@ -31,11 +31,10 @@ article {
   }
 }
 
-.title-post,
-.description {
+.title-post {
   white-space: nowrap;
   overflow: hidden;
-  padding: 5px;
+  padding: 5px 0;
   text-overflow: ellipsis;
 }
 
@@ -44,7 +43,7 @@ article {
   padding-bottom: 0;
 }
 
-.description {
+.date {
   font-size: 0.9rem;
   color: map-get($colors, primary);
 }

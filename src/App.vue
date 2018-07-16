@@ -4,7 +4,7 @@
       <span>similar to <a href="https://medium.com/">Midium</a></span>
 
       <div :title="message" class="brain-logo">
-        <router-link to="/">
+        <router-link :to="{ name: 'home' }">
           <div class="logo">
             <img src="./assets/img/brain.svg" alt="Logo">
             <h1 class="name">Brainstorm</h1>
@@ -106,12 +106,15 @@ export default {
 }
 </style>
 
-<style>
+<style lang="scss">
+@import '@/styles/variables.scss';
+
 html, body {
   margin: 0;
   padding: 0;
   font-size: 14px;
   font-family: 'Raleway', sans-serif;
+  color: map-get($colors, dark);
 }
 
 * {
