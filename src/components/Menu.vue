@@ -39,6 +39,7 @@ export default {
 
     signOut() {
       this.logout()
+        .then(() => this.$router.push({ name: 'home' }))
     },
 
     close() {

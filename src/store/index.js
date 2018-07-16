@@ -8,6 +8,14 @@ let counter = 0
 
 const generateId = () => Date.now() + (counter++)
 
+function getUserPosts(items, userId) {
+  if (!userId) {
+    return []
+  }
+
+  return items.filter(item => item.userId === userId)
+}
+
 export default new Vuex.Store({
   state: {
     posts: [],
@@ -22,7 +30,7 @@ export default new Vuex.Store({
 
   getters: {
     currentUser(state, getters) {
-      return getters.findUser(state.currentUser)
+      return state.currentUser ? getters.findUser(state.currentUser) : {}
     },
 
     findUser(state) {
@@ -38,17 +46,11 @@ export default new Vuex.Store({
     },
 
     getDraftsByUserId(state, getters) {
-      const allDrafts = getters.drafts
-      const userId = getters.currentUser.id
-
-      return allDrafts.filter(userPost => userPost.userId === userId)
+      return getUserPosts(getters.drafts, getters.currentUser.id)
     },
 
     getPostsByUserId(state, getters) {
-      const allPosts = getters.posts
-      const userId = getters.currentUser.id
-
-      return allPosts.filter(userPost => userPost.userId === userId)
+      return getUserPosts(getters.posts, getters.currentUser.id)
     },
 
     getPostById: (state) => (id) => {

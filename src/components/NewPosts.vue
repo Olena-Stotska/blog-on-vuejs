@@ -38,10 +38,10 @@
       <div class="theme">
          <select v-model="post.topic">
           <option disabled value="">Select a topic...</option>
-          <option>Tech</option>
-          <option>Politics</option>
-          <option>Culture</option>
-          <option>Other</option>
+          <option value="tech">Tech</option>
+          <option value="politics">Politics</option>
+          <option value="culture">Culture</option>
+          <option value="other">Other</option>
         </select>
 
         <span class="step-name">{{ post.topic }}</span>
