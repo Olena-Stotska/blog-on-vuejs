@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" v-if="isLoaded">
     <div class="metabar">
       <span>similar to <a href="https://medium.com/">Midium</a></span>
 
@@ -30,6 +30,7 @@ export default {
   name: 'App',
   data: () => ({
     message: 'To Home',
+    isLoaded: false
   }),
   components: {
     UserProfile,
@@ -37,6 +38,24 @@ export default {
   },
   computed: {
     ...mapState(['isLogged'])
+  },
+  methods: {
+    fetchState() {
+      return fetch('state.json')
+        .then((response) => response.json())
+        .then(state => {
+          this.$store.replaceState(Object.assign(this.$store.state, state))
+        })
+        .catch((error) => console.error(error))
+    }
+  },
+  created() {
+    if (!this.$store.state.posts.length) {
+      this.fetchState()
+        .then(() => this.isLoaded = true)
+    } else {
+      this.isLoaded = true
+    }
   }
 }
 </script>

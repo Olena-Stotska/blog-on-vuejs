@@ -3,16 +3,16 @@
     <nav class="nav-bar">
       <div class="tags controls">
         <ul class="breadcrumbs">
-          <li class="filter" :class="{ active: isFiltered('home') }" @click="filter('home')">Home</li>
-          <li class="filter" :class="{ active: isFiltered('tech') }" @click="filter('tech')">Tech</li>
-          <li class="filter" :class="{ active: isFiltered('politics') }" @click="filter('politics')">Politics</li>
-          <li class="filter" :class="{ active: isFiltered('culture') }" @click="filter('culture')">Culture</li>
+          <router-link tag="li" class="filter" :to="{ name: 'home' }">Home</router-link>
+          <router-link tag="li" class="filter" :to="{ name: 'home', params: { topic: 'tech' } }">Tech</router-link>
+          <router-link tag="li" class="filter" :to="{ name: 'home', params: { topic: 'politics' } }">Politics</router-link>
+          <router-link tag="li" class="filter" :to="{ name: 'home', params: { topic: 'culture' } }">Culture</router-link>
         </ul>
       </div>
     </nav>
 
     <main>
-      <transition-group name="filter" tag="div" class="flex-grid">
+      <transition-group name="filter" tag="div" class="grid">
         <div class="container-post" v-for="post in filteredPosts" :key="post.id">
           <router-link :to="{ name: 'home' }" tag="div" class="col">
             <div class="img-block" v-if="post.image">
@@ -37,30 +37,21 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Home',
-  data: () => ({
-    currentFilter: 'home'
-  }),
   computed: {
     ...mapGetters(['posts']),
 
+    currentTopic() {
+      return this.$route.params.topic || 'home'
+    },
+
     filteredPosts() {
-      if (this.currentFilter === 'home') {
+      if (this.currentTopic === 'home') {
         return this.posts
       }
 
-      return  this.posts.filter(post => post.topic === this.currentFilter)
+      return  this.posts.filter(post => post.topic === this.currentTopic)
     }
   },
-
-  methods: {
-    isFiltered(name) {
-      return this.currentFilter === name
-    },
-
-    filter(name) {
-      this.currentFilter = name
-    }
-  }
 }
 </script>
 
@@ -97,7 +88,7 @@ export default {
     text-transform: uppercase;
     color: map-get($colors, primary);
 
-    &.active {
+    &.router-link-exact-active {
       color: map-get($colors, dark);
       text-shadow: 0px 1px 1px map-get($colors, primary);
     }
@@ -108,14 +99,14 @@ export default {
   }
 }
 
-.flex-grid {
+.grid {
   display: block;
 }
 
 .col {
   width: 100%;
   padding: 0 10px;
-  margin: 0 0 20px 0;
+  margin-bottom: 30px;
 
   h2 {
     font-size: 1.5rem;
@@ -152,15 +143,25 @@ export default {
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
+  main {
+    padding: 0 50px;
+  }
+
   .breadcrumbs {
     li {
       margin-left: 24px;
     }
   }
 
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .container-post {
-    width: 70%;
-    margin: 0 auto;
+    width: 45%;
+    margin: 10px auto;
+    flex: 1;
   }
 
   .col {
@@ -168,9 +169,15 @@ export default {
     margin: 0 auto 40px auto;
 
     .img-block {
+      justify-content: flex-start;
+
       img {
         width: 30%
       }
+    }
+
+    p {
+      width: 70%;
     }
   }
 }
