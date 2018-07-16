@@ -190,9 +190,9 @@ form {
 
   input {
     border: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 4px;
     width: 100px;
     outline: none;
     background-color: map-get($colors, border);
@@ -201,10 +201,10 @@ form {
   .tag-output {
     padding: 5px 10px;
     margin: 10px 10px 0 0;
-    display: inline-flex;
-    font-size: 1.2rem;
-    border-radius: 10px;
+    font-size: 0.9rem;
+    border-radius: 4px;
     font-weight: 700;
+    display: inline-block;
     color: map-get($colors, primary);
     background-color: map-get($colors, border);
   }
@@ -233,7 +233,7 @@ form {
   select {
     border: none;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 4px;
     font-size: 1.2rem;
     outline: none;
     margin-right: 10px;
