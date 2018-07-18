@@ -1,47 +1,58 @@
 <template>
   <div>
-    <nav class="nav-bar">
-      <div class="tags controls">
-        <ul class="breadcrumbs">
-          <router-link tag="li" class="filter" :to="{ name: 'home' }">Home</router-link>
-          <router-link tag="li" class="filter" :to="{ name: 'home', params: { topic: 'tech' } }">Tech</router-link>
-          <router-link tag="li" class="filter" :to="{ name: 'home', params: { topic: 'politics' } }">Politics</router-link>
-          <router-link tag="li" class="filter" :to="{ name: 'home', params: { topic: 'culture' } }">Culture</router-link>
-        </ul>
-      </div>
-    </nav>
-
-    <main>
-      <transition-group name="filter" tag="div" class="grid">
-        <div class="container-post" v-for="post in filteredPosts" :key="post.id">
-          <router-link :to="{ name: 'home' }" tag="div" class="col">
-            <div class="img-block" v-if="post.image">
-              <img :src="post.image" alt="Image Post">
-            </div>
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.description }}</p>
-            <div class="details">
-              <div class="author">{{ post.userName }}</div>
-              <div class="date">{{ post.date }}</div>
-            </div>
-          </router-link>
+    <Article v-if="isArticle" />
+    <template v-else>
+      <nav class="nav-bar">
+        <div class="tags controls">
+          <ul class="breadcrumbs">
+            <router-link tag="li" class="filter" :to="{ name: 'home' }">Home</router-link>
+            <router-link tag="li" class="filter" :to="{ name: 'home', params: { id: 'tech' } }">Tech</router-link>
+            <router-link tag="li" class="filter" :to="{ name: 'home', params: { id: 'politics' } }">Politics</router-link>
+            <router-link tag="li" class="filter" :to="{ name: 'home', params: { id: 'culture' } }">Culture</router-link>
+          </ul>
         </div>
-      </transition-group>
-    </main>
+      </nav>
+
+      <main>
+        <transition-group name="filter" tag="div" class="grid">
+          <div class="container-post" v-for="post in filteredPosts" :key="post.id">
+            <router-link :to="{ name: 'home', params: { id: post.id } }" tag="div" class="col">
+              <div class="img-block" v-if="post.image">
+                <img :src="post.image" alt="Image Post">
+              </div>
+              <h2>{{ post.title }}</h2>
+              <p>{{ post.description }}</p>
+              <div class="details">
+                <div class="author">{{ post.userName }}</div>
+                <div class="date">{{ post.date }}</div>
+              </div>
+            </router-link>
+          </div>
+        </transition-group>
+      </main>
+    </template>
   </div>
 
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Article from './Article'
 
 export default {
   name: 'Home',
+  components: {
+    Article
+  },
   computed: {
     ...mapGetters(['posts']),
 
+    isArticle() {
+      return typeof this.$route.params.id === 'number'
+    },
+
     currentTopic() {
-      return this.$route.params.topic || 'home'
+      return this.$route.params.id || 'home'
     },
 
     filteredPosts() {
@@ -107,6 +118,7 @@ export default {
   width: 100%;
   padding: 0 10px;
   margin-bottom: 30px;
+  cursor: pointer;
 
   h2 {
     font-size: 1.5rem;

@@ -10,7 +10,6 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
-    { path: '/:topic?', name: 'home', component: Home },
     { path: '/posts', name: 'posts', component: ListPosts,  redirect: { name: 'drafts' },
       children: [
         { path: 'drafts', name: 'drafts', component: ListDrafts },
@@ -19,5 +18,6 @@ export default new Router({
     },
     { path: '/posts/new', name: 'newPost', component: NewPosts },
     { path: '/posts/:id', name: 'editPost', component: NewPosts },
+    { path: '/:id?', name: 'home', component: Home },
   ]
 })
