@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ListArticles :articles="getDraftsByUserId" />
-    <div v-show="!noArticles" class="empty-list">You haven't any drafts yet.</div>
+    <ListArticles :articles="draftsByUserId" />
+    <div v-show="!draftsByUserId.length" class="empty-list">You haven't any drafts yet.</div>
   </div>
 </template>
 
@@ -12,20 +12,11 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'ListDrafts',
-  data: () => ({
-    emptyDrafts: false
-  }),
   components: {
     ListArticles
   },
   computed: {
-    ...mapGetters(['getDraftsByUserId']),
-
-    emptyArticles() {
-      if (this.getDraftsByUserId.length === 0) {
-        this.emptyDrafts = true
-      }
-    }
+    ...mapGetters(['draftsByUserId'])
   }
 }
 </script>

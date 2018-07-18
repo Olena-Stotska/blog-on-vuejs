@@ -45,11 +45,11 @@ export default new Vuex.Store({
       return state.posts.filter(post => !post.draft)
     },
 
-    getDraftsByUserId(state, getters) {
+    draftsByUserId(state, getters) {
       return getUserPosts(getters.drafts, getters.currentUser.id)
     },
 
-    getPostsByUserId(state, getters) {
+    postsByUserId(state, getters) {
       return getUserPosts(getters.posts, getters.currentUser.id)
     },
 

@@ -7,8 +7,18 @@
 
     <div class="tabs">
       <ul>
-        <li><router-link :to="{ name: 'drafts' }">Drafts</router-link></li>
-        <li><router-link :to="{ name: 'public' }">Published</router-link></li>
+        <li>
+          <router-link :to="{ name: 'drafts' }">
+            Drafts
+            <span class="couter">{{ draftsByUserId.length }}</span>
+          </router-link>
+        </li>
+        <li>
+          <router-link :to="{ name: 'public' }">
+            Published
+            <span class="couter">{{ postsByUserId.length }}</span>
+          </router-link>
+        </li>
       </ul>
     </div>
     <div class="content-list">
@@ -18,8 +28,13 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'ListPosts'
+  name: 'ListPosts',
+  computed: {
+    ...mapGetters(['draftsByUserId', 'postsByUserId'])
+  }
 }
 </script>
 

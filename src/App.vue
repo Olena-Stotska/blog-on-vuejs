@@ -46,7 +46,6 @@ export default {
         .then(state => {
           this.$store.replaceState(Object.assign(this.$store.state, state))
         })
-        .catch((error) => console.error(error))
     }
   },
   created() {
