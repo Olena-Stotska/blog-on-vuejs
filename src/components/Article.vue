@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container-post">
       <h1 class="title">{{ post.title }}</h1>
       <p class="description">{{ post.description }}</p>
       <img :src="post.image" alt="Post Image">
@@ -11,14 +11,20 @@
         </div>
       </div>
     </div>
+
+    <Applause />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import Applause from './Applause'
 
 export default {
   name: 'Article',
+  components: {
+    Applause
+  },
   data: () => ({
     post: null
   }),
@@ -29,11 +35,10 @@ export default {
     $route: {
       immediate: true,
       handler(value) {
-        const article = this.getPostById(value.params.id)
+        const articleId = Number(value.params.id)
+        const article = this.getPostById(articleId)
 
-        if (article.length > 0) {
-          this.post = article[0]
-        }
+        this.post = article
       }
     }
   }
@@ -43,9 +48,9 @@ export default {
 <style scoped lang="scss">
 @import '@/styles/variables.scss';
 
-.container {
+.container-post {
   text-align: left;
-  padding: 20px;
+  margin: 20px;
 
   .description {
     font-style: italic;
@@ -59,10 +64,6 @@ export default {
   .description {
     font-size: 1.2rem;
     line-height: 2rem;
-
-      h4 {
-      font-size: 1.8rem;
-    }
   }
 }
 
@@ -72,21 +73,29 @@ export default {
   .tag {
     padding: 5px 10px;
     margin: 10px 10px 0 0;
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     border-radius: 4px;
     font-weight: 700;
+    cursor: pointer;
     display: inline-block;
     color: map-get($colors, primary);
     background-color: map-get($colors, border);
+    transition: all 0.5s;
+
+    &:hover {
+      background-color: map-get($colors, bg);
+    }
   }
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
-  .container {
-    margin: 0 5%;
+  .container-post {
+    margin: 0 10%;
 
-    .content {
-      font-size: 1.3rem;
+    .content,
+    .description {
+      font-size: 1.4rem;
+      line-height: 2.4rem;
     }
   }
 }

@@ -54,7 +54,7 @@ export default new Vuex.Store({
     },
 
     getPostById: (state) => (id) => {
-      return state.posts.filter(post => post.id === id)
+      return state.posts.find(post => post.id === id)
     }
   },
 

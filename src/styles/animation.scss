@@ -1,3 +1,6 @@
+@import './variables';
+$secondary-color: map-get($colors, secondary);
+
 @keyframes fadeInRight {
   from {
     opacity: 0;
@@ -66,3 +69,16 @@
   }
 }
 
+@keyframes shockwave {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 2px $secondary-color;
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 0;
+    box-shadow: 0 0 50px darken($secondary-color, 20%), inset 0 0 10px $secondary-color;
+  }
+}

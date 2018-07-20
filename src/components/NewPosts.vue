@@ -89,11 +89,14 @@ export default {
     $route: {
       immediate: true,
       handler(value) {
-        const article = this.getPostById(value.params.id)
+        const articleId = Number(value.params.id)
+        const article = this.getPostById(articleId)
 
-        if (article.length > 0) {
-          this.post = article[0]
+        if (article === undefined) {
+          return
         }
+
+        this.post = article
       }
     }
   },

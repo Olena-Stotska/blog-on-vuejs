@@ -48,7 +48,7 @@ export default {
     ...mapGetters(['posts']),
 
     isArticle() {
-      return typeof this.$route.params.id === 'number'
+      return !isNaN(this.$route.params.id)
     },
 
     currentTopic() {
@@ -62,7 +62,7 @@ export default {
 
       return  this.posts.filter(post => post.topic === this.currentTopic)
     }
-  },
+  }
 }
 </script>
 
