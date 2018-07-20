@@ -6,10 +6,13 @@
     </section>
     <div class="post-action">
       <div class="clap-post">
-        <button type="click" class="clap">
+        <button type="click" class="clap" @click="counterClap">
           <i class="icon-thumbs-up"></i>
         </button>
-        <span class="counter-like"></span>
+        <transition name="clap">
+          <span class="counter" v-if="isCounter">+{{ counter }}</span>
+        </transition>
+        <span class="counter-like">{{ totalClap }}</span>
       </div>
       <div class="comment-to-post">
         <i class="icon-comment"></i>
@@ -21,7 +24,30 @@
 
 <script>
 export default {
-  name: 'Applause'
+  name: 'Applause',
+  data: () => ({
+    counter: 0,
+    isCounter: false,
+    randomClap: Math.round(Math.random()*1000)
+  }),
+  computed: {
+    totalClap() {
+      return this.counter + this.randomClap
+    }
+  },
+  methods: {
+    counterClap() {
+      this.isCounter = true
+      this.hideCounter()
+      return this.counter < 50 ? this.counter++ : null
+    },
+    hideCounter() {
+      clearTimeout(this.timerId)
+      this.timerId = setTimeout(() => {
+        this.isCounter = false
+      }, 400)
+    }
+  }
 }
 </script>
 
@@ -51,7 +77,6 @@ export default {
 
 i {
   font-size: 1.8rem;
-  color: map-get($colors, secondary);
 }
 
 .post-action {
@@ -71,6 +96,8 @@ i {
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(1);
+    transition: transform 2s;
 
     &:after {
       content: "";
@@ -92,11 +119,51 @@ i {
         animation: shockwave 1.5s ease-in infinite;
       }
     }
+
+    &:active {
+      transform: scale(1.1);
+    }
+  }
+
+  .clap-post {
+    display: flex;
+    align-items: center;
+    position: relative;
+
+    .counter {
+      width: 30px;
+      height: 30px;
+      color: #fff;
+      border-radius: 50%;
+      position: absolute;
+      top: -40px;
+      font-size: 0.9rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: map-get($colors, secondary);
+    }
+
+    span {
+      margin-left: 15px;
+      font-size: 1.2rem;
+      color: map-get($colors, primary);
+    }
   }
 
   .comment-to-post {
-
+    color: map-get($colors, primary);
   }
+}
+
+.clap-enter,
+.clap-enter-to {
+  animation: fadeInUp 0.6s;
+}
+
+.clap-leave,
+.clap-leave-to {
+  animation: fadeOutUp 0.6s;
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
