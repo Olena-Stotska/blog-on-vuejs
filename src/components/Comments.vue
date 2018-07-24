@@ -1,7 +1,8 @@
 <template>
   <div class="comments-block">
     <UserInitials />
-    <textarea class="input-comment" placeholder="Add comment to this  story..."></textarea>
+    <textarea class="input-comment" @keyup.ctrl.enter="addNewComment" v-model.trim="newComment" placeholder="Add comment to this  story...">
+    </textarea>
     <div class="output-comments"></div>
   </div>
 </template>
@@ -13,6 +14,9 @@ export default {
   name: 'Comments',
   components: {
     UserInitials
+  },
+  data: () => {
+    newComment: ''
   }
 }
 </script>
@@ -34,9 +38,10 @@ export default {
     margin-left: 20px;
     padding: 5px 10px;
     font-size: 1.2rem;
-    border: 2px solid map-get($colors, border);
+    border: none;
     border-radius: 4px;
     outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .3);
     transition: all 0.5s;
 
     &::placeholder {
@@ -45,7 +50,7 @@ export default {
 
     &:focus {
       height: 100px;
-      border: 2px solid map-get($colors, bg);
+      box-shadow: 0 0 8px rgba(0, 0, 0, .5);
       &::placeholder {
         color: map-get($colors, border);
       }
