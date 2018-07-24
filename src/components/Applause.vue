@@ -98,7 +98,6 @@ i {
 }
 
 .post-action {
-  margin-bottom: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -203,8 +202,14 @@ i {
     margin: 20px 10% 0 10%;
   }
 
-  .post-action {
-    margin-bottom: 100px;
+  .post-scale {
+    div {
+      font-size: 1.4rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
   }
 }
 </style>

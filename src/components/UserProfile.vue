@@ -1,53 +1,28 @@
 <template>
   <div @click="menuVisible = !menuVisible">
-    <div class="user-logo">{{ initials }}</div>
+    <UserInitials />
     <Menu :open="menuVisible" />
   </div>
 </template>
 
 <script>
 import Menu from './Menu'
-
-import { mapGetters } from 'vuex'
+import UserInitials from './UserInitials'
 
 export default {
   name: 'UserProfile',
   components: {
     Menu,
+    UserInitials
   },
   data: () => ({
     menuVisible: false,
-  }),
-  computed: {
-    ...mapGetters(['currentUser']),
-
-    initials() {
-      const initials = this.currentUser.name.split(' ')
-
-      return initials.map(i => i.charAt(0)).join('')
-    }
-  }
+  })
 }
 </script>
 
 <style scoped lang="scss">
-@import '../styles/variables.scss';
 @import '../styles/animation.scss';
-
-.user-logo {
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: 500;
-  border-radius: 50%;
-  color: map-get($colors, secondary);
-  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.4);
-  border: 1px solid map-get($colors, secondary);
-}
 
 .fade-enter,
 .fade-enter-to {

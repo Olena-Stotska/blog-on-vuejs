@@ -13,17 +13,20 @@
     </div>
 
     <Applause />
+    <Comments />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import Applause from './Applause'
+import Comments from './Comments'
 
 export default {
   name: 'Article',
   components: {
-    Applause
+    Applause,
+    Comments
   },
   data: () => ({
     post: null
@@ -73,7 +76,6 @@ export default {
   .tag {
     padding: 5px 10px;
     margin: 10px 10px 0 0;
-    font-size: 0.9rem;
     border-radius: 4px;
     font-weight: 700;
     cursor: pointer;
@@ -96,6 +98,31 @@ export default {
     .description {
       font-size: 1.4rem;
       line-height: 2.4rem;
+    }
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, medium)}) {
+  .container-post {
+    display: flex;
+    flex-direction: column;
+
+    .title {
+      font-size: 4rem;
+    }
+
+    .description {
+      font-size: 2rem;
+    }
+
+    .title,
+    .description {
+      text-align: center;
+    }
+
+    img {
+      max-width: 80%;
+      margin: 0 auto;
     }
   }
 }
