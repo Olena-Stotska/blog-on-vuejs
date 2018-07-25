@@ -15,7 +15,7 @@
     <Applause :post="post" />
 
     <footer class="footer">
-      <Comments v-if="this.$store.state.isLogged" :post="post" />
+      <Comments :post="post" />
     </footer>
   </div>
 </template>

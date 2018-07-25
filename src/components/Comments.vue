@@ -1,7 +1,10 @@
 <template>
   <div class="container-comments">
     <h2>Responses</h2>
-    <div class="comments-block">
+    <div class="comments-block" v-if="!this.$store.state.isLogged">
+      <FormRegistration />
+    </div>
+    <div class="comments-block" v-if="this.$store.state.isLogged">
       <UserInitials :userId="currentUser.id" />
       <textarea class="input-comment" @keyup.ctrl.enter="addComment" v-model.trim="newComment" placeholder="Add comment to this  story...">
       </textarea>
@@ -21,12 +24,15 @@
 
 <script>
 import UserInitials from './UserInitials'
+import FormRegistration from './FormRegistration'
+
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Comments',
   components: {
-    UserInitials
+    UserInitials,
+    FormRegistration
   },
   props: ['post'],
   data: () => ({
@@ -65,6 +71,7 @@ export default {
   align-items: center;
   justify-content: center;
   background-color: #fff;
+  min-height: 90px;
   border: 1px solid rgba(0, 0, 0, 0.09);
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.09);
 
