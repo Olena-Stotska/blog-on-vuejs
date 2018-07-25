@@ -7,11 +7,12 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'UserInitials',
+  props: ['userId'],
   computed: {
-    ...mapGetters(['currentUser']),
+    ...mapGetters(['findUserById']),
 
     initials() {
-      const initials = this.currentUser.name.split(' ')
+      const initials = this.findUserById(this.userId).name.split(' ')
 
       return initials.map(i => i.charAt(0)).join('')
     }

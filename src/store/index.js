@@ -37,6 +37,11 @@ export default new Vuex.Store({
       return (email) => state.users.find(user => user.email === email)
     },
 
+    findUserById(state) {
+      return (id) => state.users.find(user => user.id === id)
+    },
+
+
     drafts(state) {
       return state.posts.filter(post => post.draft)
     },
@@ -91,7 +96,7 @@ export default new Vuex.Store({
       }
 
       post.comments.unshift({
-        comment: comment.text,
+        text: comment.text,
         userId: comment.userId,
         date: new Date().toLocaleString('en-uk', { month: 'long', day: 'numeric' })
       })

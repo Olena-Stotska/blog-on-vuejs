@@ -1,6 +1,6 @@
 <template>
   <div @click="menuVisible = !menuVisible">
-    <UserInitials />
+    <UserInitials :userId="currentUser.id" />
     <Menu :open="menuVisible" />
   </div>
 </template>
@@ -8,6 +8,8 @@
 <script>
 import Menu from './Menu'
 import UserInitials from './UserInitials'
+
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'UserProfile',
@@ -17,7 +19,10 @@ export default {
   },
   data: () => ({
     menuVisible: false,
-  })
+  }),
+  computed: {
+    ...mapGetters(['currentUser'])
+  }
 }
 </script>
 
