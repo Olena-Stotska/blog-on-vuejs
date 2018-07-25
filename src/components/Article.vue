@@ -13,7 +13,10 @@
     </div>
 
     <Applause :post="post" />
-    <Comments :post="post" />
+
+    <footer class="footer">
+      <Comments v-if="this.$store.state.isLogged" :post="post" />
+    </footer>
   </div>
 </template>
 
@@ -50,6 +53,13 @@ export default {
 
 <style scoped lang="scss">
 @import '@/styles/variables.scss';
+
+.footer {
+  margin-top: 50px;
+  text-align: center;
+  padding: 40px 10% 100px 10%;
+  background-color: lighten(map-get($colors, bg), 17.5%);
+}
 
 .container-post {
   text-align: left;

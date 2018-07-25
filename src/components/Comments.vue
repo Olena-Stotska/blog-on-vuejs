@@ -1,18 +1,22 @@
 <template>
-  <footer class="footer">
+  <div>
     <h2>Responses</h2>
     <div class="comments-block">
       <UserInitials />
       <textarea class="input-comment" @keyup.ctrl.enter="addComment" v-model.trim="newComment" placeholder="Add comment to this  story...">
       </textarea>
-      <div class="output-comments"></div>
     </div>
-  </footer>
+    <div class="output-comments" v-for="(comment, index) in post.comments" :key="index">
+      <div>
+        {{comment}}
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 import UserInitials from './UserInitials'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'Comments',
@@ -23,6 +27,9 @@ export default {
   data: () => ({
     newComment: '',
   }),
+  computed: {
+    ...mapGetters(['currentUser'])
+  },
   methods: {
     ...mapActions(['addNewComment']),
 
@@ -31,7 +38,13 @@ export default {
         return
       }
 
-      this.addNewComment(this.post)
+      this.addNewComment({
+        post: this.post,
+        comment: {
+          text: this.newComment,
+          userId: this.currentUser.name
+        }
+      })
 
       this.newComment = ''
     }
@@ -41,13 +54,6 @@ export default {
 
 <style scoped lang="scss">
 @import '@/styles/variables.scss';
-
-.footer {
-  margin-top: 50px;
-  text-align: center;
-  padding: 40px 10% 100px 10%;
-  background-color: lighten(map-get($colors, bg), 17.5%);
-}
 
 .comments-block {
   display: flex;
@@ -76,7 +82,7 @@ export default {
 
     &:focus {
       min-height: 150px;
-      max-height: auto;
+      height: auto;
       border: 1px solid rgba(0, 0, 0, .1);
       box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
       &::placeholder {

@@ -85,15 +85,15 @@ export default new Vuex.Store({
       state.posts.splice(indexPost, 1)
     },
 
-    addNewComment(state, post) {
+    addNewComment(state, {comment, post }) {
       if (!post.comments) {
         Vue.set(post, 'comments', [])
       }
 
       post.comments.unshift({
-        comment: post.newComment,
-        user: post.user,
-        date: post.date
+        comment: comment.text,
+        userId: comment.userId,
+        date: new Date().toLocaleString('en-uk', { month: 'long', day: 'numeric' })
       })
     }
   },
@@ -130,8 +130,8 @@ export default new Vuex.Store({
       commit('deletePost', post)
     },
 
-    addNewComment({ commit }, post) {
-      commit('addNewComment', post)
+    addNewComment({ commit }, params) {
+      commit('addNewComment', params)
     }
   }
 })

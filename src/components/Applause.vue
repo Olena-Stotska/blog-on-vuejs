@@ -63,6 +63,10 @@ export default {
   },
   methods: {
     counterClap() {
+      if (!this.$store.state.isLogged) {
+        return
+      }
+
       this.isCounter = true
       this.hideCounter()
       return this.counter < 50 ? this.counter++ : null
