@@ -3,7 +3,7 @@
     <h2>Responses</h2>
     <div class="comments-block">
       <UserInitials />
-      <textarea class="input-comment" @keyup.ctrl.enter="addNewComment" v-model.trim="newComment" placeholder="Add comment to this  story...">
+      <textarea class="input-comment" @keyup.ctrl.enter="addComment" v-model.trim="newComment" placeholder="Add comment to this  story...">
       </textarea>
       <div class="output-comments"></div>
     </div>
@@ -12,56 +12,29 @@
 
 <script>
 import UserInitials from './UserInitials'
-import { mapGetters } from 'vuex'
-import Vue from 'vue'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Comments',
   components: {
     UserInitials
   },
+  props: ['post'],
   data: () => ({
     newComment: '',
-    post: null,
   }),
-  computed: {
-    ...mapGetters(['getPostById'])
-  },
-  watch: {
-    $route: {
-      immediate: true,
-      handler(value) {
-        const article = this.getPostById(Number(value.params.id))
-
-        if (article === undefined) {
-          return
-        }
-
-        this.post = article
-      }
-    }
-  },
   methods: {
-    addNewComment() {
-      if (!this.post.comments) {
-        Vue.set(this.post, 'comments', [])
-      }
+    ...mapActions(['addNewComment']),
 
+    addComment() {
       if (this.newComment.length === 0) {
         return
       }
 
-      this.post.comments.unshift({
-        newComment: this.newComment,
-        user: this.post.userName,
-        date: new Date().toDateString()
-      })
+      this.addNewComment(this.post)
 
       this.newComment = ''
     }
-  },
-  created() {
-    console.log(this.post)
   }
 }
 </script>

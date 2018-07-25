@@ -34,7 +34,7 @@
       </div>
       <div class="comment-to-post">
         <i class="icon-comment"></i>
-        <span class="counter-comment"></span>
+        <span class="counter-comment">{{ countComments }}</span>
       </div>
     </div>
   </div>
@@ -43,6 +43,7 @@
 <script>
 export default {
   name: 'Applause',
+  props: ['post'],
   data: () => ({
     counter: 0,
     isCounter: false,
@@ -51,6 +52,13 @@ export default {
   computed: {
     totalClap() {
       return this.counter + this.randomClap
+    },
+    countComments() {
+      if (!this.post.comments) {
+        return
+      }
+
+      return this.post.comments.length
     }
   },
   methods: {
@@ -182,7 +190,14 @@ i {
   }
 
   .comment-to-post {
+    display: flex;
+    align-items: center;
     color: map-get($colors, primary);
+
+    span {
+      font-size: 1.2rem;
+      padding-left: 3px;
+    }
   }
 }
 

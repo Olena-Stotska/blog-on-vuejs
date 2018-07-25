@@ -12,8 +12,8 @@
       </div>
     </div>
 
-    <Applause />
-    <Comments />
+    <Applause :post="post" />
+    <Comments :post="post" />
   </div>
 </template>
 

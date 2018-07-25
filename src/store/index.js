@@ -83,6 +83,18 @@ export default new Vuex.Store({
     deletePost(state, { id }) {
       const indexPost = state.posts.findIndex(post => post.id === id)
       state.posts.splice(indexPost, 1)
+    },
+
+    addNewComment(state, post) {
+      if (!post.comments) {
+        Vue.set(post, 'comments', [])
+      }
+
+      post.comments.unshift({
+        comment: post.newComment,
+        user: post.user,
+        date: post.date
+      })
     }
   },
 
@@ -116,6 +128,10 @@ export default new Vuex.Store({
 
     deletePost({ commit }, post) {
       commit('deletePost', post)
+    },
+
+    addNewComment({ commit }, post) {
+      commit('addNewComment', post)
     }
   }
 })
