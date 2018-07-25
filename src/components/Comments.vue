@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container-comments">
     <h2>Responses</h2>
     <div class="comments-block">
       <UserInitials :userId="currentUser.id" />
@@ -64,20 +64,24 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.09);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.09);
+
+  .user-logo {
+    display: none;
+  }
 
   .input-comment {
-    min-width: 60%;
-    max-width: 60%;
+    min-width: 100%;
     min-height: 90px;
     max-height: 90px;
     line-height: 2rem;
-    margin-left: 20px;
     padding: 10px 15px;
     font-size: 1.2rem;
     border-radius: 4px;
     outline: none;
-    border: 1px solid rgba(0, 0, 0, .09);
-    box-shadow: 0 1px 4px rgba(0, 0, 0, .09);
+    border: none;
     transition: all 0.5s;
     &::placeholder {
       line-height: 5rem;
@@ -88,8 +92,6 @@ export default {
     &:focus {
       min-height: 150px;
       height: auto;
-      border: 1px solid rgba(0, 0, 0, .1);
-      box-shadow: 0 1px 6px rgba(0, 0, 0, .2);
       &::placeholder {
         line-height: 2rem;
         padding-left: 0;
@@ -100,9 +102,8 @@ export default {
 }
 
 .output-comments {
-  max-width: 90%;
   margin: 0 auto;
-  margin-top: 50px;
+  margin-top: 25px;
   padding: 20px 30px;
   text-align: left;
   background-color: #fff;
@@ -130,6 +131,34 @@ export default {
     margin-top: 20px;
     font-weight: 500;
     color: map-get($colors, dark);
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, small)}) {
+  .comments-block {
+    .user-logo {
+      display: flex;
+    }
+
+    .input-comment {
+      min-width: 80%;
+      max-width: 80%;
+      margin-left: 10px;
+    }
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, medium)}) {
+  .container-comments {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@media(min-width: #{map-get($breakpoints, large)}) {
+  .container-comments {
+    width: 60%;
+    margin: 0 auto;
   }
 }
 </style>

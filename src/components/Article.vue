@@ -57,7 +57,7 @@ export default {
 .footer {
   margin-top: 50px;
   text-align: center;
-  padding: 40px 10% 100px 10%;
+  padding: 40px 20px 70px 20px;
   background-color: lighten(map-get($colors, bg), 17.5%);
 }
 
@@ -101,6 +101,10 @@ export default {
 }
 
 @media(min-width: #{map-get($breakpoints, small)}) {
+  .footer {
+    padding: 40px 10% 70px 10%;
+  }
+
   .container-post {
     margin: 0 10%;
 
