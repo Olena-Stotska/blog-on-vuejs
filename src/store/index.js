@@ -109,6 +109,7 @@ export default new Vuex.Store({
       commit('createPost', {
         userId: getters.currentUser.id,
         userName: getters.currentUser.name,
+        comments: [],
         ...post
       })
     },
