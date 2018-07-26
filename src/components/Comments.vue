@@ -1,6 +1,6 @@
 <template>
   <div class="container-comments">
-    <h2>Responses</h2>
+    <h3>Responses</h3>
     <div class="comments-block" v-if="!this.$store.state.isLogged">
       <FormRegistration />
     </div>

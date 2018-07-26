@@ -15,6 +15,7 @@
     <Applause :post="post" />
 
     <footer class="footer">
+      <SimilarArticles :post="post" />
       <Comments :post="post" />
     </footer>
   </div>
@@ -24,12 +25,14 @@
 import { mapGetters } from 'vuex'
 import Applause from './Applause'
 import Comments from './Comments'
+import SimilarArticles from './SimilarArticles'
 
 export default {
   name: 'Article',
   components: {
     Applause,
-    Comments
+    Comments,
+    SimilarArticles
   },
   data: () => ({
     post: null
@@ -77,6 +80,10 @@ export default {
   .description {
     font-size: 1.2rem;
     line-height: 2rem;
+
+    /deep/ img {
+      max-width: 100%;
+    }
   }
 }
 

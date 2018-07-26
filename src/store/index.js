@@ -37,10 +37,9 @@ export default new Vuex.Store({
       return (email) => state.users.find(user => user.email === email)
     },
 
-    findUserById(state) {
-      return (id) => state.users.find(user => user.id === id)
+    findUserById: (state) => (id) => {
+      return state.users.find(user => user.id === id)
     },
-
 
     drafts(state) {
       return state.posts.filter(post => post.draft)
@@ -60,6 +59,10 @@ export default new Vuex.Store({
 
     getPostById: (state) => (id) => {
       return state.posts.find(post => post.id === id)
+    },
+
+    getSimilarPosts: (state) => (tags, id) => {
+      return state.posts.filter(post => post.tags.some(tag => tags.includes(tag)) && post.id !== id)
     }
   },
 
