@@ -8,8 +8,9 @@
         <li class="line">
           <router-link :to="{ name: 'posts' }">Your Stories</router-link>
         </li>
-        <!-- <li><a href="#">Profile</a></li>
-        <li class="line"><a href="#">Settings</a></li> -->
+        <li>
+          <router-link :to="{ name: 'settings' }">Settings</router-link>
+        </li>
         <li><a href="#" @click="signOut">Sign Out</a></li>
       </ul>
     </div>
@@ -113,7 +114,7 @@ export default {
 
 @media(min-width: #{map-get($breakpoints, small)}) {
   .popover {
-    width: 250px;
+    width: 210px;
     right: 25px;
     top: 81px;
 

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '../components/Home'
+import Settings from '../components/Settings'
 import NewPosts from '../components/NewPosts'
 import ListPosts from '../components/ListPosts'
 import ListDrafts from '../components/ListDrafts'
@@ -18,6 +19,7 @@ export default new Router({
     },
     { path: '/posts/new', name: 'newPost', component: NewPosts },
     { path: '/posts/:id', name: 'editPost', component: NewPosts },
+    { path: '/settings', name: 'settings', component: Settings },
     { path: '/:id?', name: 'home', component: Home },
   ]
 })
