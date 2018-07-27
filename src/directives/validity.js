@@ -27,3 +27,9 @@ Vue.directive('validity', {
     el.removeEventListener('input', el.__listener)
   }
 })
+
+Vue.directive('focus', (el, binding) => {
+  if (binding.value) {
+    el.focus()
+  }
+})

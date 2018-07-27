@@ -93,7 +93,7 @@ export default new Vuex.Store({
       state.posts.splice(indexPost, 1)
     },
 
-    addNewComment(state, {comment, post }) {
+    addNewComment(state, { comment, post }) {
       if (!post.comments) {
         Vue.set(post, 'comments', [])
       }
@@ -103,6 +103,11 @@ export default new Vuex.Store({
         userId: comment.userId,
         date: new Date().toLocaleString('en-uk', { month: 'long', day: 'numeric' })
       })
+    },
+
+    updateEmail(state, { email, user }) {
+      state.currentUser = email
+      user.email = email
     }
   },
 
@@ -140,6 +145,13 @@ export default new Vuex.Store({
 
     addNewComment({ commit }, params) {
       commit('addNewComment', params)
+    },
+
+    updateEmail({ commit, getters }, email) {
+      commit('updateEmail', {
+        email,
+        user: getters.currentUser
+      })
     }
   }
 })
