@@ -142,7 +142,7 @@ export default {
     }
 
     img {
-      max-width: 80%;
+      max-width: 50%;
       margin: 0 auto;
     }
   }
